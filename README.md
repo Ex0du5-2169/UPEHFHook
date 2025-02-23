@@ -5,7 +5,7 @@ You know the drill. Stick it in your bepinex/plugins folder. If that doesn't rin
 This is a very early release for those who want to try it. It is NOT a 'feature-complete' mod.
 
 What it does: 
-Allows various other female NPCs to get pregnant and give birth (Yona, Shino, Cassie etc).
+Allows various other female NPCs to get pregnant and give birth (Reika, Shino, Cassie etc).
 Allows the use of 'perfume' item on more NPCs.
 
 It does NOT: Add new scenes/animations etc.
