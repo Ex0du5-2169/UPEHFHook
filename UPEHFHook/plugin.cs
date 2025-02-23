@@ -23,6 +23,8 @@ namespace UPEHFHook
 
         internal static SkeletonDataAsset cassieSkel;
         internal static Texture2D cassieTex;
+        internal static SkeletonDataAsset genbba2Skel;
+        internal static Texture2D genbba2Tex;
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
         private readonly HashSet<string> IncludeScenes = new HashSet<string>(System.StringComparer.OrdinalIgnoreCase)
@@ -41,8 +43,10 @@ namespace UPEHFHook
                 return;
             }
 
-            cassieSkel = val.LoadAsset<SkeletonDataAsset>("Assets/modassets/cassie_01.json");
-            cassieTex = val.LoadAsset<Texture2D>("Assets/modassets/cassie_01.png");
+            cassieSkel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/cassie_01.json");
+            cassieTex = val.LoadAsset<Texture2D>("Assets/Modassets/cassie_01.png");
+            genbba2Skel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/genbba_02.json");
+            genbba2Tex = val.LoadAsset<Texture2D>("Assets/Modassets/genbba_02.png");
 
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
