@@ -86,10 +86,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patches\Skeleton.cs" />
     <Compile Include="Patches\CoHelper.cs" />
-    <Compile Include="Patches\PBAttach.cs" />
     <Compile Include="Patches\GetPreg.cs" />
-    <Compile Include="Patches\SkinManager.cs" />
     <Compile Include="plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

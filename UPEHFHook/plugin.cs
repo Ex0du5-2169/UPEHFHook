@@ -22,9 +22,15 @@ namespace UPEHFHook
         private const string modVersion = "1.0.0";
 
         internal static SkeletonDataAsset cassieSkel;
-        internal static Texture2D cassieTex;
         internal static SkeletonDataAsset genbba2Skel;
-        internal static Texture2D genbba2Tex;
+        internal static SkeletonDataAsset reikaSkel;
+        internal static SkeletonDataAsset namiSkel;
+        internal static SkeletonDataAsset shinoSkel;
+        internal static SkeletonDataAsset sallySkel;
+        internal static SkeletonDataAsset giantSkel;
+        internal static SkeletonDataAsset lfemSkel;
+        internal static SkeletonDataAsset merrySkel;
+
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
         private readonly HashSet<string> IncludeScenes = new HashSet<string>(System.StringComparer.OrdinalIgnoreCase)
@@ -44,13 +50,18 @@ namespace UPEHFHook
             }
 
             cassieSkel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/cassie_01.json");
-            cassieTex = val.LoadAsset<Texture2D>("Assets/Modassets/cassie_01.png");
             genbba2Skel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/genbba_02.json");
-            genbba2Tex = val.LoadAsset<Texture2D>("Assets/Modassets/genbba_02.png");
+            reikaSkel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/girlfriend_01.json");
+            namiSkel = val.LoadAsset<SkeletonDataAsset>("Assets/ModAssets/girlfriend_02.json");
+            shinoSkel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/bakunyu_01.json");
+            sallySkel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/boss_prison_01.json");
+            giantSkel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/gengiant_01.json");
+            lfemSkel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/gengirl_03.json");
+            merrySkel = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/santa_01.json");
 
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
-            harmony.PatchAll(typeof(PBAttach));
+            harmony.PatchAll(typeof(Skeleton));
 
             Log.LogInfo("Fill them up.");
 
