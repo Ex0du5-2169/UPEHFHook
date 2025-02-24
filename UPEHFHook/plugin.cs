@@ -33,10 +33,7 @@ namespace UPEHFHook
 
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
-        private readonly HashSet<string> IncludeScenes = new HashSet<string>(System.StringComparer.OrdinalIgnoreCase)
-        {
-            "scene_01"
-        };
+
 
         void Awake()
         {
@@ -65,42 +62,7 @@ namespace UPEHFHook
 
             Log.LogInfo("Fill them up.");
 
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            if (IncludeScenes.Contains(scene.name))
-            {
-                init_scene01();
-            }
         }
 
-        private void init_scene01()
-        {
-            var componentsToInitialize = new List<Type>
-            {
-
-                typeof(SkinManager),
-                typeof(PBAttach.SendSkeletonAndPart)
-            };
-
-            foreach (var componentType in componentsToInitialize)
-            {
-                if (FindObjectOfType(componentType) == null)
-                {
-                    InstantiateSingleton(componentType);
-                }
-            }
-        }
-
-
-
-        private void InstantiateSingleton(Type type)
-        {
-            GameObject obj = new GameObject(type.Name);
-            obj.AddComponent(type);
-            DontDestroyOnLoad(obj);
-            Log.LogInfo($"{type.Name} instantiated.");
-        }
     }
 }

@@ -87,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Patches\Skeleton.cs" />
-    <Compile Include="Patches\CoHelper.cs" />
     <Compile Include="Patches\GetPreg.cs" />
     <Compile Include="plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
