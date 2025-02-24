@@ -39,7 +39,12 @@ namespace UPEHFHook
         {
             Log = this.Logger;
             Log.LogInfo("Mad Island Universal Pregnancy Enabler");
-            AssetBundle val = AssetBundle.LoadFromFile("miassets");
+            string location = ((BaseUnityPlugin)this).Info.Location;
+            location = location.Replace("\\", "/");
+            string text = "UPEHFHook.dll";
+            string text2 = location.TrimEnd(text.ToCharArray());
+            string text3 = text2 + "miassets";
+            AssetBundle val = AssetBundle.LoadFromFile(text3);
             if (val == null)
             {
                 Log.LogError("Failed to load assets!");
