@@ -57,7 +57,7 @@ namespace UPEHFHook.Patches
             pregStage = 0;
             
 
-            if ((creamed == true) && (isPreg >= 12) && (girl.npcID != 0)) //Tests whether creampied and if the RNG allows it, for now. Later it will test creampied vs the mentstrual stage plus some RNG.
+            if ((creamed == true) && (isPreg >= 12) && (girl.npcID != 0) && (girl.npcID != 44)) //Tests whether creampied and if the RNG allows it, for now. Later it will test creampied vs the mentstrual stage plus some RNG.
             {
                 pregStage = 12;
                 UPEHFBase.Log.LogInfo(pregStage + ": Staging, ignore, not needed yet");
