@@ -55,12 +55,13 @@ namespace UPEHFHook.Patches
             UPEHFBase.Log.LogInfo(isPreg + ": Random int, must be > 11 for pregnancy");
             int pregStage = new int(); //eventually will become part of a mentstrual system, for now it's only used to hold an int for the game's preg system to receive.
             pregStage = 0;
+            
 
-            if ((creamed == true) && (isPreg >= 11) && (girl.npcID != 0)) //Tests whether creampied and if the RNG allows it, for now. Later it will test creampied vs the mentstrual stage plus some RNG.
+            if ((creamed == true) && (isPreg >= 12) && (girl.npcID != 0)) //Tests whether creampied and if the RNG allows it, for now. Later it will test creampied vs the mentstrual stage plus some RNG.
             {
                 pregStage = 12;
                 UPEHFBase.Log.LogInfo(pregStage + ": Staging, ignore, not needed yet");
-                girl.pregnant[1] = pregStage; //Trigger the game's pregnancy system.
+                girl.pregnant[1] = pregStage; //Trigger the game's pregnancy system. Yes, the result is based on approx 3/15 or 1/5 RNG, I will eventually make this more complex.
                 girl.pregnant[0] = man.friendID; //Pregnancy system requires the father be set.
 
 
@@ -94,7 +95,7 @@ namespace UPEHFHook.Patches
             if ((!__result) && (girl.pregnant[1] == 0))
             {
                 UPEHFBase.Log.LogInfo(girl.pregnant[1] + ": Not pregnant, passing to pregnancy checker");
-                pregresult = PregCheckCall(girl, man);
+                pregresult = PregCheckCall(girl, man); //Calls my pregnancy check if the game declares the result false and the girl is not currently pregnant. Essentially a second check.
 
                 __result = pregresult;
                 ___mn.uiMN.FriendHealthCheck(girl);
@@ -109,7 +110,7 @@ namespace UPEHFHook.Patches
                     return;
                 }
             }
-            else
+            else if (!__result)
             {
                 UPEHFBase.Log.LogInfo(__result + ": Pregnancy check result");
                 return;
