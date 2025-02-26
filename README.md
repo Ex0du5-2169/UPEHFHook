@@ -54,4 +54,4 @@ Ex0du5_2169 - Me - Buy me a cuppa, if you want to - https://ko-fi.com/ex0du5_216
 # Special Thanks:
 nm088 on the Mad Island modding discord for the huge amount of help and advice, plus his skeleton data swapping scripts that are crucial to this mod.
 
-Yotan - https://github.com/yotan-dev/mad-island-mods/releases - For his advice and efforts in making HFramework, that this mod was originally intended to work with (soon).
+Yotan - https://github.com/yotan-dev/mad-island-mods/releases - For his advice, and his efforts in making HFramework, that this mod was originally intended to work with (soon).
