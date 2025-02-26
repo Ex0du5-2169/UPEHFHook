@@ -6,7 +6,7 @@ The mod DOES NOT add any new animations. There are no new sex scenes, there are 
 It DOES NOT add any new NPCs.
 
 # Current Version:
-0.9.9 - Beta - testing release
+0.9.9.1 - Beta - testing release.
 
 # Installation:
 Place 'UPEHFHook.dll' into your Bepinex/plugins folder and put 'miassets' into Mad Island_Data/StreamingAssets/AssetBundles (if the latter doesn't exist, make it).
