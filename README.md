@@ -9,7 +9,7 @@ It DOES NOT add any new NPCs.
 0.9.9 - Beta - testing release
 
 # Installation:
-Place 'UPEHFHook.dll' into your Bepinex/plugins folder and put 'miassets' into Mad Island_Date/StreamingAssets/AssetBundles (if the latter doesn't exist, make it).
+Place 'UPEHFHook.dll' into your Bepinex/plugins folder and put 'miassets' into Mad Island_Data/StreamingAssets/AssetBundles (if the latter doesn't exist, make it).
 
 If you do not know how to install bepinex then I suggest looking up a guide.
 
