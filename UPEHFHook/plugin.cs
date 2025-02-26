@@ -30,7 +30,7 @@ namespace UPEHFHook
         {
             Log = this.Logger;
             Log.LogInfo("Mad Island Universal Pregnancy Enabler");
-            string location = ((BaseUnityPlugin)this).Info.Location;
+            /*string location = ((BaseUnityPlugin)this).Info.Location;
             location = location.Replace("\\", "/");
             string text = "UPEHFHook.dll";
             string text2 = location.TrimEnd(text.ToCharArray());
@@ -40,7 +40,7 @@ namespace UPEHFHook
             {
                 Log.LogError("Failed to load assets!");
                 return;
-            }
+            }*/
 
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
