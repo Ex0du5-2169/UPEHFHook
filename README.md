@@ -13,7 +13,7 @@ Place 'UPEHFHook.dll' into your Bepinex/plugins folder and put 'miassets' into M
 
 If you do not know how to install bepinex then I suggest looking up a guide.
 
-# Warning
+# Warning:
 Currently the mod will change the look of the NPCs that it affects. We're working on a fix. For now, just remember how they looked and use the 'operating table' workstation to change them back.
 
 # Planned updates:
