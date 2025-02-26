@@ -15,8 +15,10 @@ If you do not know how to install bepinex then I suggest looking at this guide -
 
 The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.2
 
-# Warning:
-Currently the mod will change the look of the NPCs that it affects. We're working on a fix. For now, just remember how they looked and use the 'operating table' workstation to change them back.
+# Warnings:
+- The mod is currently NOT COMPATIBLE with HFramework. Please do not attempt to use both mods together. I will eventually release a patch, wait until then.
+- Currently the mod will change the look of the NPCs that it affects. We're working on a fix. For now, just remember how they looked and use the 'operating table' workstation to change them back.
+- At present, the mod will swap the skeletons of any compatible characters when pregnancy is detected. Due to the way the game is coded we had to be very round-about with the way we approached it.
 
 # Girls available for impregnation in the mod:
 - Shino
