@@ -11,9 +11,10 @@ using UPEHFHook;
 
 public static class Skeleton
 {
-    [HarmonyPatch(typeof(SexManager), "SexCountChange")]
-    public class RandomCharacterPatch
-    {
+        [HarmonyPatch(typeof(SexManager))]
+        [HarmonyPatch("SexCountChange")]
+        [HarmonyPostfix]
+
         static void Postfix(CommonStates to, CommonStates from, SexManager.SexCountState sexState)
         {
             LogSkeletonInfo("to", to);
@@ -94,5 +95,4 @@ public static class Skeleton
                 LogTransformHierarchy(child, indent + "  ");
             }
         }
-    }
 }

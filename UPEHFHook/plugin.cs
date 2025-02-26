@@ -46,8 +46,31 @@ namespace UPEHFHook
             harmony.PatchAll(typeof(GetPreg));
             harmony.PatchAll(typeof(Skeleton));
 
+
             Log.LogInfo("Fill them up.");
 
+            var componentsToInitialize = new List<Type>
+        {
+            typeof(SkeletonSwapper),
+            typeof(SkeletonBundleLoader),
+
+        };
+
+            foreach (var componentType in componentsToInitialize)
+            {
+                if (FindObjectOfType(componentType) == null)
+                {
+                    InstantiateSingleton(componentType);
+                }
+            }
+
+        }
+        private void InstantiateSingleton(Type type)
+        {
+            GameObject obj = new GameObject(type.Name);
+            obj.AddComponent(type);
+            DontDestroyOnLoad(obj);
+            Log.LogInfo($"{type.Name} instantiated.");
         }
 
     }
