@@ -18,6 +18,17 @@ The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/t
 # Warning:
 Currently the mod will change the look of the NPCs that it affects. We're working on a fix. For now, just remember how they looked and use the 'operating table' workstation to change them back.
 
+# Girls available for impregnation in the mod:
+- Shino
+- Sally
+- Cassie
+- Giant
+- Large female native
+- Elder sister native
+- Reika
+- Nami (she's not in the game yet, but she will be compatible as soon as she is introduced)
+- Merry
+
 # Planned updates:
 Store NPC skins/other aspects in a dictionary and load them onto the new skeleton.
 Add better preg belly textures - work in progress.
