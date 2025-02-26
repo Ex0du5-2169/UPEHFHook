@@ -129,7 +129,7 @@ public class SkeletonSwapper : MonoBehaviour
             playerSkeletonAnimation.Skeleton.SetSkin(defaultSkin);
             playerSkeletonAnimation.Skeleton.SetToSetupPose();
         }
-        playerSkeletonAnimation.AnimationState.SetAnimation(0, "IDLE", true);
+        playerSkeletonAnimation.AnimationState.SetAnimation(0, "A_idle", true);
 
         isSwapped = true;
         UPEHFBase.Log.LogInfo($"[SkeletonSwapper] Swapped to skeleton '{swappedSkeletonDataAsset.name}'.");
@@ -156,7 +156,7 @@ public class SkeletonSwapper : MonoBehaviour
                 }
 
                 // Optionnel : lancer l'animation "IDLE"
-                skelAnim.AnimationState.SetAnimation(0, "IDLE", true);
+                skelAnim.AnimationState.SetAnimation(0, "A_idle", true);
             }
             else
             {
