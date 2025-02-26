@@ -32,11 +32,11 @@ The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/t
 - Merry
 
 # Planned updates:
-Store NPC skins/other aspects in a dictionary and load them onto the new skeleton.
-Add better preg belly textures - work in progress.
-Add compatibility for Yotan's HFramework.
-Cumflation effects + cum leaking?
-Hybrid Children NPCs?
+- Store NPC skins/other aspects in a dictionary and load them onto the new skeleton.
+- Add better preg belly textures - work in progress.
+- Add compatibility for Yotan's HFramework.
+- Cumflation effects + cum leaking?
+- Hybrid Children NPCs?
 
 # Join our Mad Island modding community:
 For memes, updates or to get involved as a developer, animator or artist. Over 18's only.
