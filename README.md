@@ -1,19 +1,35 @@
-You know the drill. Stick it in your bepinex/plugins folder. If that doesn't ring a bell, go look up how to install bepinex.
+# Mad Island Universal Pregnancy Expansion:
+Allows more NPC chracters to get pregnant and give birth.
 
-**You will need Yotan's core mod and HFramework mod: ** Without them birth will NOT work.
+# What it does not do:
+The mod DOES NOT add any new animations. There are no new sex scenes, there are no new delivery scenes, yet. My code simply duplicates animations they do have under a different name to trick the game.
+It DOES NOT add any new NPCs.
 
-This is a very early release for those who want to try it. It is NOT a 'feature-complete' mod.
+# Current Version:
+0.9.9 - Beta - testing release
 
-What it does: 
-Allows various other female NPCs to get pregnant and give birth (Reika, Shino, Cassie etc).
-Allows the use of 'perfume' item on more NPCs.
+# Installation:
+Place 'UPEHFHook.dll' into your Bepinex/plugins folder and put 'miassets' into Mad Island_Date/StreamingAssets/AssetBundles (if the latter doesn't exist, make it).
 
-It does NOT: Add new scenes/animations etc.
+If you do not know how to install bepinex then I suggest looking up a guide.
 
-Warnings:
+# Warning
+Currently the mod will change the look of the NPCs that it affects. We're working on a fix. For now, just remember how they looked and use the 'operating table' workstation to change them back.
 
-It works, most female NPCs should now get pregnant and give birth as any other NPC does. My system is slightly janky. Don't worry, it won't break anything and you might not even notice.
+# Planned updates:
+Store NPC skins/other aspects in a dictionary and load them onto the new skeleton.
+Add better preg belly textures - work in progress.
+Add compatibility for Yotan's HFramework.
+Cumflation effects + cum leaking?
+Hybrid Children NPCs?
 
-There are no new birth animations yet: If the character doesn't have a birth animation they will simply go to the most appropriate place and stand on it. Just wait, they'll give birth in time. As people make new ones (or the devs do it) then this will eventually be fixed.
+# Join our Mad Island modding community:
+For memes, updates or to get involved as a developer, animator or artist. Over 18's only.
+https://discord.gg/fgSTzEHB8v
 
-The pregnancy bellies you see are placeholders that I edited from existing game assets. These are temporary and will be replaced in time, as more art becomes available. If you wish to contribute your art, please contact me directly.
+# Credits:
+Ex0du5_2169 - Me - Buy me a cuppa, if you want to - https://ko-fi.com/ex0du5_2169
+
+# Special Thanks:
+nm088 on the Mad Island modding discord for his help getting the updated skeletons into the game.
+Yotan - https://github.com/yotan-dev/mad-island-mods/releases - For his efforts in making HFramework, that this mod was originally intended to work with.
