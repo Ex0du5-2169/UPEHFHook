@@ -38,6 +38,10 @@ The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/t
 - Cumflation effects + cum leaking?
 - Hybrid Children NPCs?
 
+# Debug keys, please don't break stuff by abusing these:
+- F4 - switches any scanned and compatible NPCs to the new skin.
+- F5 - switches all tracked skeletons back.
+
 # Join our Mad Island modding community:
 For memes, updates or to get involved as a developer, animator or artist. Over 18's only.
 https://discord.gg/fgSTzEHB8v
