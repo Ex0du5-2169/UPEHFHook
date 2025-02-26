@@ -11,6 +11,7 @@ It DOES NOT add any new NPCs.
 # Installation:
 - Place 'UPEHFHook.dll' into your Bepinex/plugins folder and put 'miassets' into Mad Island_Data/StreamingAssets/AssetBundles (if the latter doesn't exist, make it).
 - If you downloaded the vortex pack of the mod and have already installed bepinex, simply unzip it to the root of your game folder like so ![image](https://github.com/user-attachments/assets/9f47215a-f792-4ee2-a2a3-cbaa95d12684)
+- You can also use the vortex pack to mount it as a mod in Vortex.
 
 
 If you do not know how to install bepinex then I suggest looking at this guide - https://docs.bepinex.dev/articles/user_guide/installation/index.html
