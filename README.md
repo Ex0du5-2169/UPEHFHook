@@ -16,9 +16,10 @@ If you do not know how to install bepinex then I suggest looking at this guide -
 The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.2
 
 # Warnings:
+- Creating a brand new save is ALWAYS advisable when modding games. Please, for our combined sanity, make a new game and save separately when playing with mods.
 - The mod is currently NOT COMPATIBLE with HFramework. Please do not attempt to use both mods together. I will eventually release a patch, wait until then.
 - Currently the mod will change the look of the NPCs that it affects. We're working on a fix. For now, just remember how they looked and use the 'operating table' workstation to change them back.
-- At present, the mod will swap the skeletons of any compatible characters when pregnancy is detected. Due to the way the game is coded we had to be very round-about with the way we approached it.
+- At present, the mod will swap the skeletons of any compatible characters when pregnancy is detected. Due to the way the game is coded we had to be very round-about with the way we approached it. The mod gains more info on the skeletons that need swapping as those characters have sex. Let the scenes play out to max (pink bar for MC scenes).
 - CombinedMeshDemosaic causes issues in the latest versions of the game. It could feasibly also cause conflicts with my mod. It is highly recommended to use the none.bat method and install Yotan's Core mod and Unofficial patches instead.
 
 # Girls available for impregnation in the mod:
