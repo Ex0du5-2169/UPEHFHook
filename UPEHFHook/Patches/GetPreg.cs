@@ -92,7 +92,6 @@ namespace UPEHFHook.Patches
         [HarmonyPostfix]
         public static void PcheckCallback(ref bool __result, ManagersScript ___mn, CommonStates girl, CommonStates man)
         {
-            SkeletonSwapper.CleanAndTrackSkeletons();
             if ((!__result) && (girl.pregnant[1] == 0))
             {
                 UPEHFBase.Log.LogInfo(girl.pregnant[1] + ": Not pregnant, passing to pregnancy checker");
@@ -115,6 +114,16 @@ namespace UPEHFHook.Patches
             {
                 UPEHFBase.Log.LogInfo(__result + ": Pregnancy check result");
                 return;
+            }
+        }
+        [HarmonyPatch(typeof(SexManager))]
+        [HarmonyPatch("Pregnancy")]
+        [HarmonyPostfix]
+        public static void SwapForPreg(CommonStates girl)
+        {
+            if (girl.pregnant[1] == 12)
+            {
+                SkeletonSwapper.CleanAndTrackSkeletons();
             }
         }
     }
