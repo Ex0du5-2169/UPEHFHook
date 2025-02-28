@@ -124,6 +124,7 @@ namespace UPEHFHook.Patches
             if (girl.pregnant[1] == 12)
             {
                 SkeletonSwapper.CleanAndTrackSkeletons();
+                UPEHFBase.Log.LogInfo("Swapper Go!");
             }
         }
     }
