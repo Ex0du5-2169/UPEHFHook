@@ -29,7 +29,7 @@ namespace UPEHFHook
         void Awake()
         {
             Log = this.Logger;
-            Log.LogInfo("Mad Island Universal Pregnancy Enabler");
+            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-2");
             /*string location = ((BaseUnityPlugin)this).Info.Location;
             location = location.Replace("\\", "/");
             string text = "UPEHFHook.dll";
