@@ -76,8 +76,8 @@ namespace UPEHFHook
                 foreach (string text in array2)
                 {
                     PerformerLoader.AddPerformersFromFile("BepInEx/plugins/UPEdefinitions/" + text);
+                    Log.LogInfo("Loading custom performers:" + text);
                 }
-                Log.LogInfo("Loading custom performers");
                 string[] array3 = new string[1] 
                 {
                 "ExDelivery_Scenes.xml"
@@ -86,8 +86,8 @@ namespace UPEHFHook
                 foreach (string text2 in array4)
                 {
                     ScenesLoader.LoadScenesFromFile("BepInEx/plugins/UPEdefinitions" + text2);
+                    Log.LogInfo("Loading custom scenes:" + text2);
                 }
-                Log.LogInfo("Loading custom scenes");
             };
             
 
