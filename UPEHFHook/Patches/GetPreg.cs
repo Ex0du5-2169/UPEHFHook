@@ -103,8 +103,6 @@ namespace UPEHFHook.Patches
                 {
                     UPEHFBase.Log.LogInfo(pregresult + ": Pregnancy check result");
                     ___mn.sound.GoSound(108, girl.transform.position, randomPitch: true);
-                    SkeletonSwapper.CleanAndTrackSkeletons();
-                    UPEHFBase.Log.LogInfo("Swapper Go!");
                 }
                 else
                 {

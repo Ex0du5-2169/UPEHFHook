@@ -89,8 +89,6 @@ namespace UPEHFHook
                     Log.LogInfo("Loading custom scenes:" + text2);
                 }
             };
-            
-
         }
         private void InstantiateSingleton(Type type)
         {

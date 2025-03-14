@@ -19,6 +19,8 @@ public static class Skeleton
         {
             LogSkeletonInfo("to", to);
             LogSkeletonInfo("from", from);
+            SkeletonSwapper.CleanAndTrackSkeletons();
+            UPEHFBase.Log.LogInfo("Swapper Go!");
         }
     static void LogSkeletonInfo(string label, CommonStates commonState)
         {
