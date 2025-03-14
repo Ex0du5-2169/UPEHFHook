@@ -20,7 +20,7 @@ public static class Skeleton
             LogSkeletonInfo("to", to);
             LogSkeletonInfo("from", from);
         }
-        static void LogSkeletonInfo(string label, CommonStates commonState)
+    static void LogSkeletonInfo(string label, CommonStates commonState)
         {
             if (commonState == null)
             {

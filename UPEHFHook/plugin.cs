@@ -11,6 +11,9 @@ using UnityEngine;
 using Spine;
 using UPEHFHook.Patches;
 using UnityEngine.SceneManagement;
+using HFramework;
+using HFramework.Performer;
+using HFramework.Scenes;
 
 namespace UPEHFHook
 {
@@ -63,6 +66,30 @@ namespace UPEHFHook
                     InstantiateSingleton(componentType);
                 }
             }
+            PerformerLoader.OnLoadPeformers += () =>
+            {
+                string[] array = new string[1]
+                {
+                "ExDelivery_Performers.xml"
+                };
+                string[] array2 = array;
+                foreach (string text in array2)
+                {
+                    PerformerLoader.AddPerformersFromFile("BepInEx/plugins/UPEdefinitions/" + text);
+                }
+                Log.LogInfo("Loading custom performers");
+                string[] array3 = new string[1] 
+                {
+                "ExDelivery_Scenes.xml"
+                };
+                string[] array4 = array3;
+                foreach (string text2 in array4)
+                {
+                    ScenesLoader.LoadScenesFromFile("BepInEx/plugins/UPEdefinitions" + text2);
+                }
+                Log.LogInfo("Loading custom scenes");
+            };
+            
 
         }
         private void InstantiateSingleton(Type type)

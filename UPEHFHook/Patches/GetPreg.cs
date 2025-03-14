@@ -103,6 +103,8 @@ namespace UPEHFHook.Patches
                 {
                     UPEHFBase.Log.LogInfo(pregresult + ": Pregnancy check result");
                     ___mn.sound.GoSound(108, girl.transform.position, randomPitch: true);
+                    SkeletonSwapper.CleanAndTrackSkeletons();
+                    UPEHFBase.Log.LogInfo("Swapper Go!");
                 }
                 else
                 {
@@ -116,16 +118,6 @@ namespace UPEHFHook.Patches
                 return;
             }
         }
-        [HarmonyPatch(typeof(SexManager))]
-        [HarmonyPatch("Pregnancy")]
-        [HarmonyPostfix]
-        public static void SwapForPreg(CommonStates girl)
-        {
-            if (girl.pregnant[1] == 12)
-            {
-                SkeletonSwapper.CleanAndTrackSkeletons();
-                UPEHFBase.Log.LogInfo("Swapper Go!");
-            }
-        }
+
     }
 }
