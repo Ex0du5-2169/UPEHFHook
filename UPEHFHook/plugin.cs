@@ -32,7 +32,7 @@ namespace UPEHFHook
         void Awake()
         {
             Log = this.Logger;
-            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-2");
+            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-4");
             /*string location = ((BaseUnityPlugin)this).Info.Location;
             location = location.Replace("\\", "/");
             string text = "UPEHFHook.dll";
@@ -78,14 +78,17 @@ namespace UPEHFHook
                     PerformerLoader.AddPerformersFromFile("BepInEx/plugins/UPEdefinitions/" + text);
                     Log.LogInfo("Loading custom performers:" + text);
                 }
-                string[] array3 = new string[1] 
-                {
+            };
+            ScenesManager.OnRegisterScenes += () =>
+            {
+                string[] array3 = new string[1]
+{
                 "ExDelivery_Scenes.xml"
-                };
+};
                 string[] array4 = array3;
                 foreach (string text2 in array4)
                 {
-                    ScenesLoader.LoadScenesFromFile("BepInEx/plugins/UPEdefinitions" + text2);
+                    ScenesLoader.LoadScenesFromFile("BepInEx/plugins/UPEdefinitions/" + text2);
                     Log.LogInfo("Loading custom scenes:" + text2);
                 }
             };
