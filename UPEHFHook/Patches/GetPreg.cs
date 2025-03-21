@@ -35,11 +35,11 @@ namespace UPEHFHook.Patches
 
         public static void PerfumeFix(NPCManager __instance, ref bool __result, CommonStates common)
         {
-            //Should be fairly obvious, allows use of the perfume item on any NPC added to this list.
+            //Should be fairly obvious, allows use of the perfume item on any NPC added to this list. As it stands, I've set it to everyone.
             if (!__result)
             {
-               __result = true;
-                      
+                __result = true;
+
             }
         }
 
@@ -55,7 +55,7 @@ namespace UPEHFHook.Patches
             UPEHFBase.Log.LogInfo(isPreg + ": Random int, must be > 11 for pregnancy");
             int pregStage = new int(); //eventually will become part of a mentstrual system, for now it's only used to hold an int for the game's preg system to receive.
             pregStage = 0;
-            
+
 
             if ((creamed == true) && (isPreg >= 12) && (girl.npcID != 0) && (girl.npcID != 44)) //Tests whether creampied and if the RNG allows it, for now. Later it will test creampied vs the mentstrual stage plus some RNG.
             {
@@ -103,6 +103,8 @@ namespace UPEHFHook.Patches
                 {
                     UPEHFBase.Log.LogInfo(pregresult + ": Pregnancy check result");
                     ___mn.sound.GoSound(108, girl.transform.position, randomPitch: true);
+                    SkeletonSwapper.CleanAndTrackSkeletons();
+                    UPEHFBase.Log.LogInfo("Swapper Go!");
                 }
                 else
                 {
@@ -113,6 +115,28 @@ namespace UPEHFHook.Patches
             else if (!__result)
             {
                 UPEHFBase.Log.LogInfo(__result + ": Pregnancy check result");
+                SkeletonSwapper.RevertSkeleton();
+                UPEHFBase.Log.LogInfo("Swapping back!");
+                return;
+            }
+            if (girl.pregnant[1] == 3)
+            {
+                SkeletonSwapper.CleanAndTrackSkeletons();
+                UPEHFBase.Log.LogInfo("Swapper Go!");
+                return;
+            }
+        }
+
+        [HarmonyPatch(typeof(SaveManager))]
+        [HarmonyPatch("LoadNPCEquip")]
+        [HarmonyPostfix]
+
+        public static void LoadNPCPatch(CommonStates nCommon)
+        {
+            if (nCommon.pregnant[1] == 3)
+            {
+                SkeletonSwapper.CleanAndTrackSkeletons();
+                UPEHFBase.Log.LogInfo("Swapper Go!");
                 return;
             }
         }
