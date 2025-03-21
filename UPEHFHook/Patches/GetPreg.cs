@@ -35,13 +35,34 @@ namespace UPEHFHook.Patches
 
         public static void PerfumeFix(NPCManager __instance, ref bool __result, CommonStates common)
         {
-            //Should be fairly obvious, allows use of the perfume item on any NPC added to this list. As it stands, I've set it to everyone.
-            if (!__result)
+            if (UPEHFHook.Config.Instance.AllowAllPerfume.Value)
             {
-                __result = true;
+                //Should be fairly obvious, allows use of the perfume item on any NPC added to this list. As it stands, I've set it to everyone.
+                if (!__result)
+                {
+                    __result = true;
 
+                }
             }
-        }
+        }/*
+        [HarmonyPatch(typeof(NPCMove))]
+        [HarmonyPatch("Live")]
+        [HarmonyPostfix]
+
+        public static void RapeRateIncrease(CommonStates common, CommonStates partner, ref ManagersScript ___mn)
+        {
+            if (UPEHFHook.Config.Instance.ChangeRapeRate.Value)
+            {
+                if ((common.debuff.discontent <= 2) && (common.libido >= 50))
+                {
+                    if (___mn.sexMN.RapesCheck(common, partner))
+                    {
+                        ___mn.sexMN.StartCoroutine(___mn.sexMN.CommonRapesNPC(common, partner, 0)); //Part of a potential R rate increase test I was doing.
+
+                    }
+                }
+            }
+        }*/
 
         public static bool PregCheckCall(CommonStates girl, CommonStates man)
         {

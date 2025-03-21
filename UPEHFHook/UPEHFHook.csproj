@@ -86,12 +86,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="Patches\SkeletonBundleLoader.cs" />
     <Compile Include="Patches\SkeletonSwapper.cs" />
     <Compile Include="Patches\Skeleton.cs" />
     <Compile Include="Patches\GetPreg.cs" />
-    <Compile Include="plugin.cs" />
+    <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

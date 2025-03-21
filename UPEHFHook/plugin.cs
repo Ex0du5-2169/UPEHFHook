@@ -15,6 +15,7 @@ using HFramework;
 using HFramework.Performer;
 using HFramework.Scenes;
 
+
 namespace UPEHFHook
 {
     [BepInPlugin(modGUID, modName, modVersion)]
@@ -30,9 +31,11 @@ namespace UPEHFHook
         internal static ManualLogSource Log;
 
 
+
         void Awake()
         {
-
+            UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
+            
             Log = this.Logger;
             Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-4");
             /*string location = ((BaseUnityPlugin)this).Info.Location;
