@@ -24,7 +24,6 @@ public class SkeletonBundleLoader : MonoBehaviour
         "cassie_01",
         "genbba_02",
         "gengiant_01",
-        "gengirl_03",
         "girlfriend_01",
         "girlfriend_02",
         "santa_01"

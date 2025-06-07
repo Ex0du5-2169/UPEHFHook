@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UPEHFHook;
+using UPEHFHook.Patches;
 
 
 public static class Skeleton
@@ -20,12 +21,20 @@ public static class Skeleton
         LogSkeletonInfo("to", to);
         LogSkeletonInfo("from", from);
 
-        if (to.pregnant[1] == 3)
+        if (to.pregnant[1] <= 3)
         {
             SkeletonSwapper.CleanAndTrackSkeletons();
             UPEHFBase.Log.LogInfo("Swapper Go!");
             return;
-        }
+        }/*
+        switch (from.npcID)
+        {
+            case 11:
+            case 25:
+            case 35:
+                UPEHFHook.
+                break;
+        }*/
     }
     static void LogSkeletonInfo(string label, CommonStates commonState)
         {

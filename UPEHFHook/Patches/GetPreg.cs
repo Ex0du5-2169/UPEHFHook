@@ -8,9 +8,10 @@ using UnityEngine;
 
 namespace UPEHFHook.Patches
 {
-    class GetPreg
+    public class GetPreg
     {
         private static bool pregresult = new bool();
+        public static int currentStage = new int();
 
         [HarmonyPatch(typeof(SexManager))]
         [HarmonyPatch("PlayerRaped")]
@@ -48,7 +49,7 @@ namespace UPEHFHook.Patches
         [HarmonyPatch(typeof(NPCMove))]
         [HarmonyPatch("Live")]
         [HarmonyPostfix]
-
+        
         public static void RapeRateIncrease(CommonStates common, CommonStates partner, ref ManagersScript ___mn)
         {
             if (UPEHFHook.Config.Instance.ChangeRapeRate.Value)
@@ -61,6 +62,24 @@ namespace UPEHFHook.Patches
 
                     }
                 }
+            }
+        }
+        public static Cumflate(CommonStates girl)
+        {
+            switch (girl.npcID)
+            {
+                case 0:
+                case 15:
+                case 16:
+                case 17:
+                case 44:
+                case 90:
+                case 110:
+                case 113:
+                case 114:
+                case 115:
+                case 116:
+                    return;
             }
         }*/
 
@@ -78,7 +97,7 @@ namespace UPEHFHook.Patches
             pregStage = 0;
 
 
-            if ((creamed == true) && (isPreg >= 12) && (girl.npcID != 0) && (girl.npcID != 44)) //Tests whether creampied and if the RNG allows it, for now. Later it will test creampied vs the mentstrual stage plus some RNG.
+            if ((creamed == true) && (isPreg >= 12) && (girl.npcID != 0) && (girl.npcID != 44) && (girl.npcID != 17)) //Tests whether creampied and if the RNG allows it, for now. Later it will test creampied vs the mentstrual stage plus some RNG.
             {
                 pregStage = 12;
                 UPEHFBase.Log.LogInfo(pregStage + ": Staging, ignore, not needed yet");
