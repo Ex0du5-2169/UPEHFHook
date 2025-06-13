@@ -19,7 +19,7 @@ using HFramework.Scenes;
 namespace UPEHFHook
 {
     [BepInPlugin(modGUID, modName, modVersion)]
-    [BepInDependency("HFramework", "1.0.6")]
+    [BepInDependency("HFramework", "1.0.9")]
     public class UPEHFBase : BaseUnityPlugin
     {
         private const string modGUID = "Ex.MadIslandUPE";
@@ -37,7 +37,7 @@ namespace UPEHFHook
             UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
             
             Log = this.Logger;
-            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-4");
+            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-6");
             /*string location = ((BaseUnityPlugin)this).Info.Location;
             location = location.Replace("\\", "/");
             string text = "UPEHFHook.dll";
