@@ -84,9 +84,13 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\Mad Island_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="YotanModCore">
+      <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\BepInEx\plugins\YotanModCore\YotanModCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Patches\HFSpawnChild.cs" />
     <Compile Include="Patches\SkeletonBundleLoader.cs" />
     <Compile Include="Patches\SkeletonSwapper.cs" />
     <Compile Include="Patches\Skeleton.cs" />
