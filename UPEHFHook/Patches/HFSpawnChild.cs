@@ -63,7 +63,7 @@ namespace UPEHFHook.Patches
                 case NpcID.ElderSisterNative:
                     childNpcId = __gender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                     break;
-
+                /*
                 case NpcID.Yona:
                     switch (CommonUtils.GetPregnantFatherId(this.Girl))
                     {
@@ -75,11 +75,11 @@ namespace UPEHFHook.Patches
                             break;
                         default:
                             UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + this.Girl.npcID);
-                            //childNpcId = __gender == Gender.Male ? NpcID.YoungMan : NpcID.YoungLady;
+                            childNpcId = __gender == Gender.Male ? NpcID.YoungMan : NpcID.YoungLady;
                             break;
                     }
                     break;
-
+                */
                 default:
                     UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + this.Girl.npcID);
                     childNpcId = __gender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
