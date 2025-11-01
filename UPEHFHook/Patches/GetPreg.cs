@@ -87,9 +87,9 @@ namespace UPEHFHook.Patches
         {
 
 
-            bool creamed = false;
+            /*bool creamed = false;
             creamed = true; //Must have taken an action that gives the creampie state, for now we have given it that state through other means.
-            UPEHFBase.Log.LogInfo(creamed + ": Creampied");
+            UPEHFBase.Log.LogInfo(creamed + ": Creampied");*/
 
             int isPreg = UnityEngine.Random.Range(0, 15); //Set a random range for preg chance
             UPEHFBase.Log.LogInfo(isPreg + ": Random int, must be > 11 for pregnancy");
@@ -97,7 +97,7 @@ namespace UPEHFHook.Patches
             pregStage = 0;
 
 
-            if ((creamed == true) && (isPreg >= 12) && (girl.npcID != 0) && (girl.npcID != 44) && (girl.npcID != 17)) //Tests whether creampied and if the RNG allows it, for now. Later it will test creampied vs the mentstrual stage plus some RNG.
+            if (/*(creamed == true) && */(isPreg >= 12) && (girl.npcID != 0) && (girl.npcID != 44) && (girl.npcID != 17)) //Tests whether creampied(placeholder, does nothing yet) and if the RNG allows it, for now..
             {
                 pregStage = 12;
                 UPEHFBase.Log.LogInfo(pregStage + ": Staging, ignore, not needed yet");
@@ -111,7 +111,7 @@ namespace UPEHFHook.Patches
                     UPEHFBase.Log.LogInfo(girl.pregnant[1] + ": Default pregnancy state");
                     UPEHFBase.Log.LogInfo(girl.pregnant[0] + ": Return ID of sperm donor");
                     pregStage = 0; //Reset used variables, just in case.
-                    creamed = false;
+                    //creamed = false;
                     isPreg = 0;
                     return true;
 
@@ -135,7 +135,7 @@ namespace UPEHFHook.Patches
             if ((!__result) && (girl.pregnant[1] == 0))
             {
                 UPEHFBase.Log.LogInfo(girl.pregnant[1] + ": Not pregnant, passing to pregnancy checker");
-                pregresult = PregCheckCall(girl, man); //Calls my pregnancy check if the game declares the result false and the girl is not currently pregnant. Essentially a second check.
+                pregresult = PregCheckCall(girl, man); //Calls my pregnancy check if the game declares the result false and the girl is not currently pregnant. Essentially I say to the code "nuh uh, run this mess instead".
 
                 __result = pregresult;
                 ___mn.uiMN.FriendHealthCheck(girl);
@@ -160,20 +160,6 @@ namespace UPEHFHook.Patches
                 return;
             }
             if (girl.pregnant[1] == 3)
-            {
-                SkeletonSwapper.CleanAndTrackSkeletons();
-                UPEHFBase.Log.LogInfo("Swapper Go!");
-                return;
-            }
-        }
-
-        [HarmonyPatch(typeof(SaveManager))]
-        [HarmonyPatch("LoadNPCEquip")]
-        [HarmonyPostfix]
-
-        public static void LoadNPCPatch(CommonStates nCommon)
-        {
-            if (nCommon.pregnant[1] == 3)
             {
                 SkeletonSwapper.CleanAndTrackSkeletons();
                 UPEHFBase.Log.LogInfo("Swapper Go!");
