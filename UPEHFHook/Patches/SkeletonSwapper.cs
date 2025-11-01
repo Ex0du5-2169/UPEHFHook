@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Windows.WebCam;
 using UPEHFHook;
 
 public class SkeletonSwapper : MonoBehaviour
@@ -29,6 +30,7 @@ public class SkeletonSwapper : MonoBehaviour
         "girlfriend_02",
         "santa_01"
     };
+    public static int[] params1 = new int[10];
 
     public static SkeletonSwapper Instance { get; private set; }
 
@@ -139,12 +141,15 @@ public class SkeletonSwapper : MonoBehaviour
         {
             string id = kvp.Key;
             SkeletonAnimation skelAnim = kvp.Value;
+            params1 = skelAnim.GetComponent<CommonStates>().parameters;
 
             if (SkeletonBundleLoader.allowedSkeletonAssets.TryGetValue(id, out SkeletonDataAsset newAsset))
             {
                 UPEHFBase.Log.LogInfo($"Swapping skeleton for key: {id} with asset: {newAsset.name}");
 
+
                 skelAnim.skeletonDataAsset = newAsset;
+                skelAnim.GetComponent<CommonStates>().parameters = params1;
                 skelAnim.Initialize(true);
 
                 string defaultSkin = newAsset.GetSkeletonData(true)?.DefaultSkin?.Name;
@@ -152,6 +157,7 @@ public class SkeletonSwapper : MonoBehaviour
                 {
                     skelAnim.Skeleton.SetSkin(defaultSkin);
                     skelAnim.Skeleton.SetToSetupPose();
+
                 }
 
                 // Optionnel : lancer l'animation "IDLE"
