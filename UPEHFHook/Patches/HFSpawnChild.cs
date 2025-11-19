@@ -35,6 +35,8 @@ namespace UPEHFHook.Patches
             {
                 case NpcID.Reika:
                 case NpcID.Cassie:
+                //case NpcID.Kana:
+                //case NpcID.Lulu:
                     childNpcId = __gender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
                     break;
                 case NpcID.Giant:
@@ -43,6 +45,7 @@ namespace UPEHFHook.Patches
                 case NpcID.Nami:
                 case NpcID.Sally: //Maybe add chance for normal native births too?
                 case NpcID.Shino:
+                //case NpcID.Mira:
                     childNpcId = __gender == Gender.Male ? NpcID.UnderGroundBoy : NpcID.UnderGroundGirl;
                     break;
                 case NpcID.Merry: //December-only present birth chance?
