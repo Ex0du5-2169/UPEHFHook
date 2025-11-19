@@ -1,4 +1,5 @@
-﻿using Spine.Unity;
+﻿using Spine;
+using Spine.Unity;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -150,12 +151,15 @@ public class SkeletonSwapper : MonoBehaviour
 
                 skelAnim.skeletonDataAsset = newAsset;
                 skelAnim.GetComponent<CommonStates>().parameters = params1;
+                Slot slot1 = skelAnim.skeleton.FindSlot("Body_preg");
+                slot1.Attachment = null;
                 skelAnim.Initialize(true);
 
                 string defaultSkin = newAsset.GetSkeletonData(true)?.DefaultSkin?.Name;
                 if (!string.IsNullOrEmpty(defaultSkin))
                 {
                     skelAnim.Skeleton.SetSkin(defaultSkin);
+                    slot1.Attachment = null;
                     skelAnim.Skeleton.SetToSetupPose();
 
                 }

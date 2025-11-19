@@ -53,6 +53,7 @@ namespace UPEHFHook
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
             harmony.PatchAll(typeof(Skeleton));
+            harmony.PatchAll(typeof(HFSpawnChild));
 
 
             Log.LogInfo("Fill them up.");

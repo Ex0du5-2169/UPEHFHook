@@ -159,12 +159,6 @@ namespace UPEHFHook.Patches
                 UPEHFBase.Log.LogInfo("Swapping back!");
                 return;
             }
-            if (girl.pregnant[1] == 3)
-            {
-                SkeletonSwapper.CleanAndTrackSkeletons();
-                UPEHFBase.Log.LogInfo("Swapper Go!");
-                return;
-            }
         }
 
     }
