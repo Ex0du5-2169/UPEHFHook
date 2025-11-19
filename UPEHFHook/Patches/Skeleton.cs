@@ -12,30 +12,7 @@ using UPEHFHook.Patches;
 
 public static class Skeleton
 {
-    [HarmonyPatch(typeof(SexManager))]
-    [HarmonyPatch("SexCountChange")]
-    [HarmonyPostfix]
 
-    static void Postfix(CommonStates to, CommonStates from, SexManager.SexCountState sexState)
-    {
-        LogSkeletonInfo("to", to);
-        LogSkeletonInfo("from", from);
-
-        if (to.pregnant[1] <= 3)
-        {
-            SkeletonSwapper.CleanAndTrackSkeletons();
-            UPEHFBase.Log.LogInfo("Swapper Go!");
-            return;
-        }/*
-        switch (from.npcID)
-        {
-            case 11:
-            case 25:
-            case 35:
-                UPEHFHook.
-                break;
-        }*/
-    }
     static void LogSkeletonInfo(string label, CommonStates commonState)
         {
             if (commonState == null)
