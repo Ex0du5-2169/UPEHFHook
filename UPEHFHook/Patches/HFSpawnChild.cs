@@ -23,7 +23,7 @@ namespace UPEHFHook.Patches
         [HarmonyPatch("GetChildNpcId")]
         [HarmonyPrefix]
 
-        private void RecalculateChild(ref int __gender)
+        private static void RecalculateChild(ref int __gender)
         {
             int childNpcId;
             int randomBirth;
