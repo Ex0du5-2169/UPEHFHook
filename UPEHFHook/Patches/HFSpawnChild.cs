@@ -13,17 +13,27 @@ namespace UPEHFHook.Patches
 {
     public class HFSpawnChild
     {
-        private CommonStates Girl;
+        public static CommonStates Girl;
+        public static int getGender {  get; set; }
         public void newChild(CommonStates girl)
         {
-            this.Girl = girl;
+            Girl = girl;
+        }
+
+        [HarmonyPatch(typeof(SpawnChild))]
+        [HarmonyPatch("GetChildGennder")]
+        [HarmonyPrefix]
+
+        private static void GrabGender(ref int __gender)
+        {
+            getGender = __gender;
         }
 
         [HarmonyPatch(typeof(SpawnChild))]
         [HarmonyPatch("GetChildNpcId")]
         [HarmonyPrefix]
 
-        private static void RecalculateChild(ref int __gender)
+        private static void RecalculateChild()
         {
             int childNpcId;
             int randomBirth;
@@ -31,40 +41,40 @@ namespace UPEHFHook.Patches
 
             //Add a valentines birth chance too? Which NPC?
 
-            switch (this.Girl.npcID)
+            switch (Girl.npcID)
             {
                 case NpcID.Reika:
                 case NpcID.Cassie:
                 //case NpcID.Kana:
                 //case NpcID.Lulu:
-                    childNpcId = __gender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
+                    childNpcId = getGender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
                     break;
                 case NpcID.Giant:
-                    childNpcId = __gender == Gender.Male ? NpcID.YoungMan : NpcID.Giant2;
+                    childNpcId = getGender == Gender.Male ? NpcID.YoungMan : NpcID.Giant2;
                     break;
                 case NpcID.Nami:
                 case NpcID.Sally: //Maybe add chance for normal native births too?
                 case NpcID.Shino:
                 //case NpcID.Mira:
-                    childNpcId = __gender == Gender.Male ? NpcID.UnderGroundBoy : NpcID.UnderGroundGirl;
+                    childNpcId = getGender == Gender.Male ? NpcID.UnderGroundBoy : NpcID.UnderGroundGirl;
                     break;
                 case NpcID.Merry: //December-only present birth chance?
                     if ((System.DateTime.Today.Month == 12) && (randomBirth >= 10))
                     {
-                        childNpcId = __gender == Gender.Male ? NpcID.PresentBlue : NpcID.PresentRed;
+                        childNpcId = getGender == Gender.Male ? NpcID.PresentBlue : NpcID.PresentRed;
                         UPEHFBase.Log.LogInfo("Congratulations, Merry birthed a pressent!");
                         randomBirth = -1;
                         break;
                     }
                     else
                     {
-                        childNpcId = __gender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
+                        childNpcId = getGender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                         break;
                     }
 
 
                 case NpcID.ElderSisterNative:
-                    childNpcId = __gender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
+                    childNpcId = getGender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                     break;
                 /*
                 case NpcID.Yona:
@@ -84,8 +94,8 @@ namespace UPEHFHook.Patches
                     break;
                 */
                 default:
-                    UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + this.Girl.npcID);
-                    childNpcId = __gender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
+                    UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + Girl.npcID);
+                    childNpcId = getGender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                     break;
             }
         }
