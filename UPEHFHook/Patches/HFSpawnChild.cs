@@ -21,10 +21,10 @@ namespace UPEHFHook.Patches
         }
 
         [HarmonyPatch(typeof(SpawnChild))]
-        [HarmonyPatch("GetChildGennder")]
+        [HarmonyPatch("GetChildGender")]
         [HarmonyPrefix]
 
-        private static void GrabGender(ref int __gender)
+        private static void GrabGender(int __gender)
         {
             getGender = __gender;
         }
