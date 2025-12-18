@@ -17,13 +17,15 @@ namespace UPEHFHook.Patches
         public void newChild(CommonStates girl)
         {
             Girl = girl;
+            SkeletonSwapper.CleanAndTrackSkeletons();
+            UPEHFBase.Log.LogInfo(Girl + "Girl found, swapping skeleton");
         }
 
         [HarmonyPatch(typeof(SpawnChild))]
         [HarmonyPatch("GetChildNpcId")]
-        [HarmonyPrefix]
+        [HarmonyPostfix]
 
-        private static void RecalculateChild(int __0)
+        private static int RecalculateChild(int __0)
         {
             int childNpcId;
             int randomBirth;
@@ -35,8 +37,8 @@ namespace UPEHFHook.Patches
             {
                 case NpcID.Reika:
                 case NpcID.Cassie:
-                //case NpcID.Kana:
-                //case NpcID.Lulu:
+                    //case NpcID.Kana:
+                    //case NpcID.Lulu:
                     childNpcId = __0 == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
                     break;
                 case NpcID.Giant:
@@ -45,7 +47,7 @@ namespace UPEHFHook.Patches
                 case NpcID.Nami:
                 case NpcID.Sally: //Maybe add chance for normal native births too?
                 case NpcID.Shino:
-                //case NpcID.Mira:
+                    //case NpcID.Mira:
                     childNpcId = __0 == Gender.Male ? NpcID.UnderGroundBoy : NpcID.UnderGroundGirl;
                     break;
                 case NpcID.Merry: //December-only present birth chance?
@@ -88,6 +90,7 @@ namespace UPEHFHook.Patches
                     childNpcId = __0 == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                     break;
             }
+            return childNpcId;
         }
 
     }

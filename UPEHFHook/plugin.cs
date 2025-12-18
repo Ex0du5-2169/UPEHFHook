@@ -14,12 +14,13 @@ using UnityEngine.SceneManagement;
 using HFramework;
 using HFramework.Performer;
 using HFramework.Scenes;
+using HFramework.Hook;
 
 
 namespace UPEHFHook
 {
     [BepInPlugin(modGUID, modName, modVersion)]
-    [BepInDependency("HFramework", "1.0.9")]
+    [BepInDependency("HFramework", "1.1.0")]
     public class UPEHFBase : BaseUnityPlugin
     {
         private const string modGUID = "Ex.MadIslandUPE";

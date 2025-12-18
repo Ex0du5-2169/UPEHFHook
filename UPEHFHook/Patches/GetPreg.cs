@@ -92,12 +92,12 @@ namespace UPEHFHook.Patches
             UPEHFBase.Log.LogInfo(creamed + ": Creampied");*/
 
             int isPreg = UnityEngine.Random.Range(0, 15); //Set a random range for preg chance
-            UPEHFBase.Log.LogInfo(isPreg + ": Random int, must be > 11 for pregnancy");
+            UPEHFBase.Log.LogInfo(isPreg + ": Random int, must be > 10 for pregnancy");
             int pregStage = new int(); //eventually will become part of a mentstrual system, for now it's only used to hold an int for the game's preg system to receive.
             pregStage = 0;
 
 
-            if (/*(creamed == true) && */(isPreg >= 12) && (girl.npcID != 0) && (girl.npcID != 44) && (girl.npcID != 17)) //Tests whether creampied(placeholder, does nothing yet) and if the RNG allows it, for now..
+            if (/*(creamed == true) && */(isPreg >= 11) && (girl.npcID != 0) && (girl.npcID != 44) && (girl.npcID != 17)) //Tests whether creampied(placeholder, does nothing yet) and if the RNG allows it, for now..
             {
                 pregStage = 12;
                 UPEHFBase.Log.LogInfo(pregStage + ": Staging, ignore, not needed yet");
@@ -143,8 +143,8 @@ namespace UPEHFHook.Patches
                 {
                     UPEHFBase.Log.LogInfo(pregresult + ": Pregnancy check result");
                     ___mn.sound.GoSound(108, girl.transform.position, randomPitch: true);
-                    SkeletonSwapper.CleanAndTrackSkeletons();
-                    UPEHFBase.Log.LogInfo("Swapper Go!");
+                    //SkeletonSwapper.CleanAndTrackSkeletons();
+                    //UPEHFBase.Log.LogInfo("Swapper Go!");
                 }
                 else
                 {
@@ -155,8 +155,8 @@ namespace UPEHFHook.Patches
             else if (!__result)
             {
                 UPEHFBase.Log.LogInfo(__result + ": Pregnancy check result");
-                SkeletonSwapper.RevertSkeleton();
-                UPEHFBase.Log.LogInfo("Swapping back!");
+                //SkeletonSwapper.RevertSkeleton();
+                //UPEHFBase.Log.LogInfo("Swapping back!");
                 return;
             }
         }
