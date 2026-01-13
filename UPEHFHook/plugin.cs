@@ -50,7 +50,7 @@ namespace UPEHFHook
             string location = ((BaseUnityPlugin)this).Info.Location;
             string newtext = "UPEHFHook.dll";
             string text1 = location.TrimEnd(newtext.ToCharArray());
-            string text3 = text1 + "miassets";
+            string text3 = text1 + "Assets/miassets";
             AssetBundle val = AssetBundle.LoadFromFile(text3);
             if (val == null)
             {

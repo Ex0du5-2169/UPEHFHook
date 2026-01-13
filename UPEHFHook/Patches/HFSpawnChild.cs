@@ -78,7 +78,7 @@ namespace UPEHFHook.Patches
                     break;
                 
                 case NpcID.Yona:
-                    switch (CommonUtils.GetPregnantFatherId(Girl))
+                    switch (Girl.pregnant[0])
                     {
                         case NpcID.Spike:
                             childNpcId = getgender == Gender.Male ? NpcID.Spider : NpcID.Spider2;
