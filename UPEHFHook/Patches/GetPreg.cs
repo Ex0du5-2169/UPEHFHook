@@ -14,22 +14,14 @@ namespace UPEHFHook.Patches
         public static int currentStage = new int();
 
         [HarmonyPatch(typeof(SexManager))]
-        [HarmonyPatch("PlayerRaped")]
+        [HarmonyPatch("Start")]
         [HarmonyPostfix]
 
-        public static void PRaped(CommonStates to, CommonStates from, SexManager __instance, ref ManagersScript ___mn)
+        public static void SwapSkel(SexManager __instance)
         {
-            switch (to.npcID)
-            {
-                case 0:
-                    __instance.PregnancyCheck(to, from);
-                    ___mn.uiMN.FriendHealthCheck(to);
-                    break;
-                case 1:
-                    break;
-            }
-            //This section attaempts to trigger a pregnancy check upon the player being raped.
+            SkeletonSwapper.CleanAndTrackSkeletons();
         }
+
         [HarmonyPatch(typeof(NPCManager))]
         [HarmonyPatch("IsPerfumeNPC")]
         [HarmonyPostfix]
@@ -45,51 +37,10 @@ namespace UPEHFHook.Patches
 
                 }
             }
-        }/*
-        [HarmonyPatch(typeof(NPCMove))]
-        [HarmonyPatch("Live")]
-        [HarmonyPostfix]
-        
-        public static void RapeRateIncrease(CommonStates common, CommonStates partner, ref ManagersScript ___mn)
-        {
-            if (UPEHFHook.Config.Instance.ChangeRapeRate.Value)
-            {
-                if ((common.debuff.discontent <= 2) && (common.libido >= 50))
-                {
-                    if (___mn.sexMN.RapesCheck(common, partner))
-                    {
-                        ___mn.sexMN.StartCoroutine(___mn.sexMN.CommonRapesNPC(common, partner, 0)); //Part of a potential R rate increase test I was doing.
-
-                    }
-                }
-            }
         }
-        public static Cumflate(CommonStates girl)
-        {
-            switch (girl.npcID)
-            {
-                case 0:
-                case 15:
-                case 16:
-                case 17:
-                case 44:
-                case 90:
-                case 110:
-                case 113:
-                case 114:
-                case 115:
-                case 116:
-                    return;
-            }
-        }*/
 
         public static bool PregCheckCall(CommonStates girl, CommonStates man)
         {
-
-
-            /*bool creamed = false;
-            creamed = true; //Must have taken an action that gives the creampie state, for now we have given it that state through other means.
-            UPEHFBase.Log.LogInfo(creamed + ": Creampied");*/
 
             int isPreg = UnityEngine.Random.Range(0, 15); //Set a random range for preg chance
             UPEHFBase.Log.LogInfo(isPreg + ": Random int, must be > 10 for pregnancy");
@@ -97,7 +48,7 @@ namespace UPEHFHook.Patches
             pregStage = 0;
 
 
-            if (/*(creamed == true) && */(isPreg >= 11) && (girl.npcID != 0) && (girl.npcID != 44) && (girl.npcID != 17)) //Tests whether creampied(placeholder, does nothing yet) and if the RNG allows it, for now..
+            if ((isPreg >= 11) && (girl.npcID != 0) && (girl.npcID != 44) && (girl.npcID != 17) && (girl.npcID != 9)) //Tests whether creampied(placeholder, does nothing yet) and if the RNG allows it, for now..
             {
                 pregStage = 12;
                 UPEHFBase.Log.LogInfo(pregStage + ": Staging, ignore, not needed yet");
@@ -105,7 +56,7 @@ namespace UPEHFHook.Patches
                 girl.pregnant[0] = man.friendID; //Pregnancy system requires the father be set.
 
 
-                if (girl.pregnant[1] == 12)
+                if ((girl.pregnant[1] == 12) && (girl.pregnant[0] != -1))
                 {
 
                     UPEHFBase.Log.LogInfo(girl.pregnant[1] + ": Default pregnancy state");

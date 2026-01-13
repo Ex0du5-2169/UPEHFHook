@@ -7,6 +7,7 @@ using HFramework.Handlers;
 using HarmonyLib;
 using YotanModCore;
 using YotanModCore.Consts;
+using System.Runtime.CompilerServices;
 
 
 namespace UPEHFHook.Patches
@@ -14,18 +15,26 @@ namespace UPEHFHook.Patches
     public class HFSpawnChild
     {
         public static CommonStates Girl;
+        public static int getgender;
         public void newChild(CommonStates girl)
         {
             Girl = girl;
-            SkeletonSwapper.CleanAndTrackSkeletons();
-            UPEHFBase.Log.LogInfo(Girl + "Girl found, swapping skeleton");
+        }
+
+        [HarmonyPatch(typeof(SpawnChild))]
+        [HarmonyPatch("GetChildGender")]
+        [HarmonyPostfix]
+
+        public void GetGender(int gender)
+        {
+            getgender = gender;
         }
 
         [HarmonyPatch(typeof(SpawnChild))]
         [HarmonyPatch("GetChildNpcId")]
         [HarmonyPostfix]
 
-        private static int RecalculateChild(int __0)
+        private int RecalculateChild()
         {
             int childNpcId;
             int randomBirth;
@@ -37,59 +46,59 @@ namespace UPEHFHook.Patches
             {
                 case NpcID.Reika:
                 case NpcID.Cassie:
-                    //case NpcID.Kana:
                     //case NpcID.Lulu:
-                    childNpcId = __0 == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
+                    childNpcId = getgender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
                     break;
                 case NpcID.Giant:
-                    childNpcId = __0 == Gender.Male ? NpcID.YoungMan : NpcID.Giant2;
+                    childNpcId = getgender == Gender.Male ? NpcID.YoungMan : NpcID.Giant2;
                     break;
                 case NpcID.Nami:
                 case NpcID.Sally: //Maybe add chance for normal native births too?
                 case NpcID.Shino:
                     //case NpcID.Mira:
-                    childNpcId = __0 == Gender.Male ? NpcID.UnderGroundBoy : NpcID.UnderGroundGirl;
+                    childNpcId = getgender == Gender.Male ? NpcID.UnderGroundBoy : NpcID.UnderGroundGirl;
                     break;
                 case NpcID.Merry: //December-only present birth chance?
                     if ((System.DateTime.Today.Month == 12) && (randomBirth >= 10))
                     {
-                        childNpcId = __0 == Gender.Male ? NpcID.PresentBlue : NpcID.PresentRed;
+                        childNpcId = getgender == Gender.Male ? NpcID.PresentBlue : NpcID.PresentRed;
                         UPEHFBase.Log.LogInfo("Congratulations, Merry birthed a present!");
                         randomBirth = -1;
                         break;
                     }
                     else
                     {
-                        childNpcId = __0 == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
+                        childNpcId = getgender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                         break;
                     }
 
-
+                //case NpcID.Kana:
                 case NpcID.ElderSisterNative:
-                    childNpcId = __0 == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
+                    childNpcId = getgender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                     break;
-                /*
+                
                 case NpcID.Yona:
-                    switch (CommonUtils.GetPregnantFatherId(this.Girl))
+                    switch (CommonUtils.GetPregnantFatherId(Girl))
                     {
                         case NpcID.Spike:
-                            childNpcId = __0 == Gender.Male ? NpcID.Spider : NpcID.Spider2;
+                            childNpcId = getgender == Gender.Male ? NpcID.Spider : NpcID.Spider2;
                             break;
                         case NpcID.Planton:
-                            childNpcId = __0 == Gender.Male ? NpcID.Mandrake : NpcID.Nepenthes;
+                            childNpcId = getgender == Gender.Male ? NpcID.Mandrake : NpcID.Nepenthes;
                             break;
                         default:
-                            UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + this.Girl.npcID);
-                            childNpcId = __0 == Gender.Male ? NpcID.YoungMan : NpcID.YoungLady;
+                            UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + Girl.npcID);
+                            childNpcId = getgender == Gender.Male ? NpcID.YoungMan : NpcID.YoungLady;
                             break;
                     }
                     break;
-                */
+                
                 default:
                     UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + Girl.npcID);
-                    childNpcId = __0 == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
+                    childNpcId = getgender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                     break;
             }
+            
             return childNpcId;
         }
 
