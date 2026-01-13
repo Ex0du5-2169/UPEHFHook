@@ -31,6 +31,14 @@ namespace UPEHFHook
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
 
+        public static SkeletonDataAsset Reika;
+        public static SkeletonDataAsset Nami;
+        public static SkeletonDataAsset Cassie;
+        public static SkeletonDataAsset Shino;
+        public static SkeletonDataAsset Sally;
+        public static SkeletonDataAsset Giant;
+        public static SkeletonDataAsset ESis;
+        public static SkeletonDataAsset Merry;
 
 
         void Awake()
@@ -55,6 +63,7 @@ namespace UPEHFHook
             harmony.PatchAll(typeof(GetPreg));
             harmony.PatchAll(typeof(Skeleton));
             harmony.PatchAll(typeof(HFSpawnChild));
+            harmony.PatchAll(typeof(NewSwap));
 
 
             Log.LogInfo("Fill them up.");
@@ -99,6 +108,21 @@ namespace UPEHFHook
                     Log.LogInfo("Loading custom scenes:" + text2);
                 }
             };
+            string text3 = "Assets/miassets";
+            AssetBundle val = AssetBundle.LoadFromFile(text3);
+            if (val == null)
+            {
+                UPEHFBase.Log.LogError("Failed to load assets!");
+                return;
+            }
+            Reika = val.LoadAsset<SkeletonDataAsset>("modassets/girlfriend_01/girlfriend_01_SkeletonData.asset");
+            Nami = val.LoadAsset<SkeletonDataAsset>("modassets/girlfriend_02/girlfriend_02_SkeletonData.asset");
+            Merry = val.LoadAsset<SkeletonDataAsset>("modassets/santa_01/santa_01_SkeletonData.asset");
+            ESis = val.LoadAsset<SkeletonDataAsset>("modassets/genbba_02/genbba_02_SkeletonData.asset");
+            Giant = val.LoadAsset<SkeletonDataAsset>("modassets/gengiant_01/gengiant_01_SkeletonData.asset");
+            Shino = val.LoadAsset<SkeletonDataAsset>("modassets/bakunyu_01/bakunyu_01_SkeletonData.asset");
+            Cassie = val.LoadAsset<SkeletonDataAsset>("modassets/cassie_01/cassie_01_SkeletonData.asset");
+            Sally = val.LoadAsset<SkeletonDataAsset>("modassets/boss_prison_01/boss_prison_01_SkeletonData.asset");
         }
         private void InstantiateSingleton(Type type)
         {

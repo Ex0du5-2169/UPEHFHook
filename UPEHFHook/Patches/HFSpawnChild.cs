@@ -25,16 +25,16 @@ namespace UPEHFHook.Patches
         [HarmonyPatch("GetChildGender")]
         [HarmonyPostfix]
 
-        public void GetGender(int gender)
+        public static void GetGender(int gender)
         {
             getgender = gender;
         }
 
         [HarmonyPatch(typeof(SpawnChild))]
         [HarmonyPatch("GetChildNpcId")]
-        [HarmonyPostfix]
+        [HarmonyPrefix]
 
-        private int RecalculateChild()
+        private static void RecalculateChild()
         {
             int childNpcId;
             int randomBirth;
@@ -50,7 +50,7 @@ namespace UPEHFHook.Patches
                     childNpcId = getgender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
                     break;
                 case NpcID.Giant:
-                    childNpcId = getgender == Gender.Male ? NpcID.YoungMan : NpcID.Giant2;
+                    childNpcId = getgender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl; //change to Giant2 when she's implemented
                     break;
                 case NpcID.Nami:
                 case NpcID.Sally: //Maybe add chance for normal native births too?
@@ -86,9 +86,12 @@ namespace UPEHFHook.Patches
                         case NpcID.Planton:
                             childNpcId = getgender == Gender.Male ? NpcID.Mandrake : NpcID.Nepenthes;
                             break;
+                        case NpcID.Bigfoot:
+                            childNpcId = getgender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
+                            break;
                         default:
                             UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + Girl.npcID);
-                            childNpcId = getgender == Gender.Male ? NpcID.YoungMan : NpcID.YoungLady;
+                            childNpcId = getgender == Gender.Male ? NpcID.Son : NpcID.YoungLady;
                             break;
                     }
                     break;
@@ -99,7 +102,7 @@ namespace UPEHFHook.Patches
                     break;
             }
             
-            return childNpcId;
+            return;
         }
 
     }

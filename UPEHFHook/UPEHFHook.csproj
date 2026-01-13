@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Patches\NewSwap.cs" />
     <Compile Include="Patches\HFSpawnChild.cs" />
     <Compile Include="Patches\SkeletonBundleLoader.cs" />
     <Compile Include="Patches\SkeletonSwapper.cs" />
