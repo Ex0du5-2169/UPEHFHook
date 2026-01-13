@@ -46,18 +46,25 @@ namespace UPEHFHook
             UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
             
             Log = this.Logger;
-            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-6");
-            /*string location = ((BaseUnityPlugin)this).Info.Location;
-            location = location.Replace("\\", "/");
-            string text = "UPEHFHook.dll";
-            string text2 = location.TrimEnd(text.ToCharArray());
-            string text3 = text2 + "miassets";
+            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-8");
+            string location = ((BaseUnityPlugin)this).Info.Location;
+            string newtext = "UPEHFHook.dll";
+            string text1 = location.TrimEnd(newtext.ToCharArray());
+            string text3 = text1 + "miassets";
             AssetBundle val = AssetBundle.LoadFromFile(text3);
             if (val == null)
             {
-                Log.LogError("Failed to load assets!");
+                UPEHFBase.Log.LogError("Failed to load assets!");
                 return;
-            }*/
+            }
+            Reika = val.LoadAsset<SkeletonDataAsset>("modassets/girlfriend_01/girlfriend_01_SkeletonData.asset");
+            Nami = val.LoadAsset<SkeletonDataAsset>("modassets/girlfriend_02/girlfriend_02_SkeletonData.asset");
+            Merry = val.LoadAsset<SkeletonDataAsset>("modassets/santa_01/santa_01_SkeletonData.asset");
+            ESis = val.LoadAsset<SkeletonDataAsset>("modassets/genbba_02/genbba_02_SkeletonData.asset");
+            Giant = val.LoadAsset<SkeletonDataAsset>("modassets/gengiant_01/gengiant_01_SkeletonData.asset");
+            Shino = val.LoadAsset<SkeletonDataAsset>("modassets/bakunyu_01/bakunyu_01_SkeletonData.asset");
+            Cassie = val.LoadAsset<SkeletonDataAsset>("modassets/cassie_01/cassie_01_SkeletonData.asset");
+            Sally = val.LoadAsset<SkeletonDataAsset>("modassets/boss_prison_01/boss_prison_01_SkeletonData.asset");
 
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
@@ -108,21 +115,7 @@ namespace UPEHFHook
                     Log.LogInfo("Loading custom scenes:" + text2);
                 }
             };
-            string text3 = "Assets/miassets";
-            AssetBundle val = AssetBundle.LoadFromFile(text3);
-            if (val == null)
-            {
-                UPEHFBase.Log.LogError("Failed to load assets!");
-                return;
-            }
-            Reika = val.LoadAsset<SkeletonDataAsset>("modassets/girlfriend_01/girlfriend_01_SkeletonData.asset");
-            Nami = val.LoadAsset<SkeletonDataAsset>("modassets/girlfriend_02/girlfriend_02_SkeletonData.asset");
-            Merry = val.LoadAsset<SkeletonDataAsset>("modassets/santa_01/santa_01_SkeletonData.asset");
-            ESis = val.LoadAsset<SkeletonDataAsset>("modassets/genbba_02/genbba_02_SkeletonData.asset");
-            Giant = val.LoadAsset<SkeletonDataAsset>("modassets/gengiant_01/gengiant_01_SkeletonData.asset");
-            Shino = val.LoadAsset<SkeletonDataAsset>("modassets/bakunyu_01/bakunyu_01_SkeletonData.asset");
-            Cassie = val.LoadAsset<SkeletonDataAsset>("modassets/cassie_01/cassie_01_SkeletonData.asset");
-            Sally = val.LoadAsset<SkeletonDataAsset>("modassets/boss_prison_01/boss_prison_01_SkeletonData.asset");
+            
         }
         private void InstantiateSingleton(Type type)
         {
