@@ -75,7 +75,7 @@ namespace UPEHFHook
 
             Log.LogInfo("Fill them up.");
 
-            var componentsToInitialize = new List<Type>
+           /* var componentsToInitialize = new List<Type>
         {
             typeof(SkeletonSwapper),
             typeof(SkeletonBundleLoader),
@@ -88,7 +88,7 @@ namespace UPEHFHook
                 {
                     InstantiateSingleton(componentType);
                 }
-            }
+            }*/
             PerformerLoader.OnLoadPeformers += () =>
             {
                 string[] array = new string[1]
@@ -116,14 +116,14 @@ namespace UPEHFHook
                 }
             };
             
-        }
+        }/*
         private void InstantiateSingleton(Type type)
         {
             GameObject obj = new GameObject(type.Name);
             obj.AddComponent(type);
             DontDestroyOnLoad(obj);
             Log.LogInfo($"{type.Name} instantiated.");
-        }
+        }*/
 
     }
 }

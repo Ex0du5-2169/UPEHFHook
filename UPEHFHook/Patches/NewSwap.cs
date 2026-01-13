@@ -12,7 +12,7 @@ namespace UPEHFHook.Patches
     internal class NewSwap
     {
         [HarmonyPatch(typeof(CommonStates))]
-        [HarmonyPatch("LoveChange")]
+        [HarmonyPatch("Start")]
         [HarmonyPostfix]
 
         public static void CSPostFix(CommonStates __instance)
