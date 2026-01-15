@@ -34,7 +34,7 @@ namespace UPEHFHook.Patches
         [HarmonyPatch("GetChildNpcId")]
         [HarmonyPrefix]
 
-        private static void RecalculateChild()
+        private static void RecalculateChild(ref int __result)
         {
             int childNpcId;
             int randomBirth;
@@ -101,8 +101,8 @@ namespace UPEHFHook.Patches
                     childNpcId = getgender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
                     break;
             }
-            
-            return;
+
+            __result = childNpcId;
         }
 
     }
