@@ -30,7 +30,7 @@ namespace UPEHFHook
 
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
-
+        /*
         public static SkeletonDataAsset Reika;
         public static SkeletonDataAsset Nami;
         public static SkeletonDataAsset Cassie;
@@ -39,7 +39,7 @@ namespace UPEHFHook
         public static SkeletonDataAsset Giant;
         public static SkeletonDataAsset ESis;
         public static SkeletonDataAsset Merry;
-
+        */
 
         void Awake()
         {
@@ -47,7 +47,7 @@ namespace UPEHFHook
             
             Log = this.Logger;
             Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-8");
-            string location = ((BaseUnityPlugin)this).Info.Location;
+            /*string location = ((BaseUnityPlugin)this).Info.Location;
             string newtext = "UPEHFHook.dll";
             string text1 = location.TrimEnd(newtext.ToCharArray());
             string text3 = text1 + "Assets/miassets";
@@ -65,17 +65,17 @@ namespace UPEHFHook
             Shino = val.LoadAsset<SkeletonDataAsset>("modassets/bakunyu_01/bakunyu_01_SkeletonData.asset");
             Cassie = val.LoadAsset<SkeletonDataAsset>("modassets/cassie_01/cassie_01_SkeletonData.asset");
             Sally = val.LoadAsset<SkeletonDataAsset>("modassets/boss_prison_01/boss_prison_01_SkeletonData.asset");
-
+            */
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
             harmony.PatchAll(typeof(Skeleton));
-            harmony.PatchAll(typeof(HFSpawnChild));
+            //harmony.PatchAll(typeof(HFSpawnChild));
             harmony.PatchAll(typeof(NewSwap));
 
 
             Log.LogInfo("Fill them up.");
 
-           /* var componentsToInitialize = new List<Type>
+            var componentsToInitialize = new List<Type>
         {
             typeof(SkeletonSwapper),
             typeof(SkeletonBundleLoader),
@@ -88,7 +88,7 @@ namespace UPEHFHook
                 {
                     InstantiateSingleton(componentType);
                 }
-            }*/
+            }
             PerformerLoader.OnLoadPeformers += () =>
             {
                 string[] array = new string[1]
@@ -116,14 +116,14 @@ namespace UPEHFHook
                 }
             };
             
-        }/*
+        }
         private void InstantiateSingleton(Type type)
         {
             GameObject obj = new GameObject(type.Name);
             obj.AddComponent(type);
             DontDestroyOnLoad(obj);
             Log.LogInfo($"{type.Name} instantiated.");
-        }*/
+        }
 
     }
 }

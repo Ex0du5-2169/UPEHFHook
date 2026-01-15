@@ -31,7 +31,6 @@ public class SkeletonSwapper : MonoBehaviour
         "girlfriend_02",
         "santa_01"
     };
-    public static int[] params1 = new int[10];
 
     public static SkeletonSwapper Instance { get; private set; }
 
@@ -142,7 +141,6 @@ public class SkeletonSwapper : MonoBehaviour
         {
             string id = kvp.Key;
             SkeletonAnimation skelAnim = kvp.Value;
-            params1 = skelAnim.GetComponent<CommonStates>().parameters;
 
             if (SkeletonBundleLoader.allowedSkeletonAssets.TryGetValue(id, out SkeletonDataAsset newAsset))
             {
@@ -150,16 +148,12 @@ public class SkeletonSwapper : MonoBehaviour
 
 
                 skelAnim.skeletonDataAsset = newAsset;
-                skelAnim.GetComponent<CommonStates>().parameters = params1;
-                Slot slot1 = skelAnim.skeleton.FindSlot("Body_preg");
-                slot1.Attachment = null;
                 skelAnim.Initialize(true);
 
                 string defaultSkin = newAsset.GetSkeletonData(true)?.DefaultSkin?.Name;
                 if (!string.IsNullOrEmpty(defaultSkin))
                 {
                     skelAnim.Skeleton.SetSkin(defaultSkin);
-                    slot1.Attachment = null;
                     skelAnim.Skeleton.SetToSetupPose();
 
                 }
