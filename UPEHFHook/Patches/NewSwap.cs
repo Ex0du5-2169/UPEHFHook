@@ -32,7 +32,7 @@ namespace UPEHFHook.Patches
                     case 114:
                     case 115:
                     case 116:
-                        SkeletonSwapper.CleanAndTrackSkeletons();
+                        SkeletonSwapper.SwapMatchingSkeletons();
                         break;
                 }
             }

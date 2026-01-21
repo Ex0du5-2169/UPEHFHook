@@ -22,22 +22,14 @@ namespace UPEHFHook.Patches
         }
 
         [HarmonyPatch(typeof(SpawnChild))]
-        [HarmonyPatch("GetChildGender")]
-        [HarmonyPostfix]
-
-        public static void GetGender(int gender)
-        {
-            getgender = gender;
-        }
-
-        [HarmonyPatch(typeof(SpawnChild))]
         [HarmonyPatch("GetChildNpcId")]
         [HarmonyPrefix]
 
-        private static void RecalculateChild(ref int __result)
+        private static void RecalculateChild(ref int __result, int gender)
         {
             int childNpcId;
             int randomBirth;
+            getgender = gender;
             randomBirth = UnityEngine.Random.Range(0, 20);
 
             //Add a valentines birth chance too? Which NPC?

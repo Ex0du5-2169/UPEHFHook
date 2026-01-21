@@ -10,17 +10,6 @@ namespace UPEHFHook.Patches
 {
     public class GetPreg
     {
-        private static bool pregresult = new bool();
-        public static int currentStage = new int();
-
-        [HarmonyPatch(typeof(SexManager))]
-        [HarmonyPatch("Start")]
-        [HarmonyPostfix]
-
-        public static void SwapSkel(SexManager __instance)
-        {
-            SkeletonSwapper.CleanAndTrackSkeletons();
-        }
 
         [HarmonyPatch(typeof(NPCManager))]
         [HarmonyPatch("IsPerfumeNPC")]
@@ -39,76 +28,26 @@ namespace UPEHFHook.Patches
             }
         }
 
-        public static bool PregCheckCall(CommonStates girl, CommonStates man)
-        {
-
-            int isPreg = UnityEngine.Random.Range(0, 15); //Set a random range for preg chance
-            UPEHFBase.Log.LogInfo(isPreg + ": Random int, must be > 10 for pregnancy");
-            int pregStage = new int(); //eventually will become part of a mentstrual system, for now it's only used to hold an int for the game's preg system to receive.
-            pregStage = 0;
-
-
-            if ((isPreg >= 11) && (girl.npcID != 0) && (girl.npcID != 44) && (girl.npcID != 17) && (girl.npcID != 9)) //Tests whether creampied(placeholder, does nothing yet) and if the RNG allows it, for now..
-            {
-                pregStage = 12;
-                UPEHFBase.Log.LogInfo(pregStage + ": Staging, ignore, not needed yet");
-                girl.pregnant[1] = pregStage; //Trigger the game's pregnancy system. Yes, the result is based on approx 3/15 or 1/5 RNG, I will eventually make this more complex.
-                girl.pregnant[0] = man.friendID; //Pregnancy system requires the father be set.
-
-
-                if ((girl.pregnant[1] == 12) && (girl.pregnant[0] != -1))
-                {
-
-                    UPEHFBase.Log.LogInfo(girl.pregnant[1] + ": Default pregnancy state");
-                    UPEHFBase.Log.LogInfo(girl.pregnant[0] + ": Return ID of sperm donor");
-                    pregStage = 0; //Reset used variables, just in case.
-                    //creamed = false;
-                    isPreg = 0;
-                    return true;
-
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-        }
         [HarmonyPatch(typeof(SexManager))]
-        [HarmonyPatch("PregnancyCheck")]
-        [HarmonyPostfix]
-        public static void PcheckCallback(ref bool __result, ManagersScript ___mn, CommonStates girl, CommonStates man)
-        {
-            if ((!__result) && (girl.pregnant[1] == 0))
-            {
-                UPEHFBase.Log.LogInfo(girl.pregnant[1] + ": Not pregnant, passing to pregnancy checker");
-                pregresult = PregCheckCall(girl, man); //Calls my pregnancy check if the game declares the result false and the girl is not currently pregnant. Essentially I say to the code "nuh uh, run this mess instead".
+        [HarmonyPatch("IsPregable")]
+        [HarmonyPrefix]
 
-                __result = pregresult;
-                ___mn.uiMN.FriendHealthCheck(girl);
-                if (pregresult)
-                {
-                    UPEHFBase.Log.LogInfo(pregresult + ": Pregnancy check result");
-                    ___mn.sound.GoSound(108, girl.transform.position, randomPitch: true);
-                    //SkeletonSwapper.CleanAndTrackSkeletons();
-                    //UPEHFBase.Log.LogInfo("Swapper Go!");
-                }
-                else
-                {
-                    UPEHFBase.Log.LogInfo(pregresult + ": Pregnancy check result");
-                    return;
-                }
-            }
-            else if (!__result)
+        public static void IsPregablePatch(CommonStates __instance, ref bool __result)
+        {
+            switch (__instance.npcID)
             {
-                UPEHFBase.Log.LogInfo(__result + ": Pregnancy check result");
-                //SkeletonSwapper.RevertSkeleton();
-                //UPEHFBase.Log.LogInfo("Swapping back!");
-                return;
+                case 5:
+                case 6:
+                case 110:
+                case 113:
+                case 114:
+                case 115:
+                case 116:
+                    //case 118:
+                    //case 162:
+                    //case 163:
+                    __result = true;
+                    break;
             }
         }
 

@@ -17,7 +17,7 @@ namespace UPEHFHook
         internal void Init(ConfigFile conf)
         {
             //ChangeRapeRate = conf.Bind<bool>("General", "ChangeRapeRate", true, "Increase the rate at which rapes occur.");
-            AllowAllPerfume = conf.Bind<bool>("General", "AllowAllPerfume", true, "Allow perfume to be used on any NPC.");
+            AllowAllPerfume = conf.Bind<bool>("General", "AllowAllPerfume", false, "Allow perfume to be used on any NPC.");
         }
     }
 }
