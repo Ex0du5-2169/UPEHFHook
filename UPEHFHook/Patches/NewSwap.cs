@@ -33,12 +33,20 @@ namespace UPEHFHook.Patches
                         skelAnim.initialSkinName = "default";
                         skelAnim.Initialize(true);
                         skelGraph.SetMaterialDirty();
+                        if (partner.pregnant[0] == -1)
+                        {
+                            skelAnim.skeleton.SetAttachment("Body_preg", null);
+                        }
                         break;
                     case 6:
                         skelAnim.skeletonDataAsset = UPEHFBase.Nami;
                         skelAnim.initialSkinName = "default";
                         skelAnim.Initialize(true);
                         skelGraph.SetMaterialDirty();
+                        if (partner.pregnant[0] == -1)
+                        {
+                            skelAnim.skeleton.SetAttachment("Body_preg", null);
+                        }
                         break;
                     //case 90:
                     case 110:
@@ -46,30 +54,50 @@ namespace UPEHFHook.Patches
                         skelAnim.initialSkinName = "default";
                         skelAnim.Initialize(true);
                         skelGraph.SetMaterialDirty();
+                        if (partner.pregnant[0] == -1)
+                        {
+                            skelAnim.skeleton.SetAttachment("Body_preg", null);
+                        }
                         break;
                     case 113:
                         skelAnim.skeletonDataAsset = UPEHFBase.Cassie;
                         skelAnim.initialSkinName = "default";
                         skelAnim.Initialize(true);
                         skelGraph.SetMaterialDirty();
+                        if (partner.pregnant[0] == -1)
+                        {
+                            skelAnim.skeleton.SetAttachment("Body_preg", null);
+                        }
                         break;
                     case 114:
                         skelAnim.skeletonDataAsset = UPEHFBase.Shino;
                         skelAnim.initialSkinName = "default";
                         skelAnim.Initialize(true);
                         skelGraph.SetMaterialDirty();
+                        if (partner.pregnant[0] == -1)
+                        {
+                            skelAnim.skeleton.SetAttachment("Body_preg", null);
+                        }
                         break;
                     case 115:
                         skelAnim.skeletonDataAsset = UPEHFBase.Sally;
                         skelAnim.initialSkinName = "default";
                         skelAnim.Initialize(true);
                         skelGraph.SetMaterialDirty();
+                        if (partner.pregnant[0] == -1)
+                        {
+                            skelAnim.skeleton.SetAttachment("Body_preg", null);
+                        }
                         break;
                     case 116:
                         skelAnim.skeletonDataAsset = UPEHFBase.Merry;
                         skelAnim.initialSkinName = "default";
                         skelAnim.Initialize(true);
                         skelGraph.SetMaterialDirty();
+                        if (partner.pregnant[0] == -1)
+                        {
+                            skelAnim.skeleton.SetAttachment("Body_preg", null);
+                        }
                         break;
                 }
             }
