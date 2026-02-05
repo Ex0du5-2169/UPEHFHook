@@ -20,7 +20,7 @@ using HFramework.Hook;
 namespace UPEHFHook
 {
     [BepInPlugin(modGUID, modName, modVersion)]
-    [BepInDependency("HFramework", "1.1.0")]
+    [BepInDependency("HFramework", "1.1.2")]
     public class UPEHFBase : BaseUnityPlugin
     {
         private const string modGUID = "Ex.MadIslandUPE";
@@ -30,24 +30,24 @@ namespace UPEHFHook
 
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
-        /*
+        
         public static SkeletonDataAsset Reika;
         public static SkeletonDataAsset Nami;
         public static SkeletonDataAsset Cassie;
         public static SkeletonDataAsset Shino;
         public static SkeletonDataAsset Sally;
         public static SkeletonDataAsset Giant;
-        public static SkeletonDataAsset ESis;
+        //public static SkeletonDataAsset ESis;
         public static SkeletonDataAsset Merry;
-        */
+        
 
         void Awake()
         {
             UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
             
             Log = this.Logger;
-            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-beta-8");
-            /*string location = ((BaseUnityPlugin)this).Info.Location;
+            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-test-01");
+            string location = ((BaseUnityPlugin)this).Info.Location;
             string newtext = "UPEHFHook.dll";
             string text1 = location.TrimEnd(newtext.ToCharArray());
             string text3 = text1 + "Assets/miassets";
@@ -57,15 +57,15 @@ namespace UPEHFHook
                 UPEHFBase.Log.LogError("Failed to load assets!");
                 return;
             }
-            Reika = val.LoadAsset<SkeletonDataAsset>("modassets/girlfriend_01/girlfriend_01_SkeletonData.asset");
-            Nami = val.LoadAsset<SkeletonDataAsset>("modassets/girlfriend_02/girlfriend_02_SkeletonData.asset");
-            Merry = val.LoadAsset<SkeletonDataAsset>("modassets/santa_01/santa_01_SkeletonData.asset");
-            ESis = val.LoadAsset<SkeletonDataAsset>("modassets/genbba_02/genbba_02_SkeletonData.asset");
-            Giant = val.LoadAsset<SkeletonDataAsset>("modassets/gengiant_01/gengiant_01_SkeletonData.asset");
-            Shino = val.LoadAsset<SkeletonDataAsset>("modassets/bakunyu_01/bakunyu_01_SkeletonData.asset");
-            Cassie = val.LoadAsset<SkeletonDataAsset>("modassets/cassie_01/cassie_01_SkeletonData.asset");
-            Sally = val.LoadAsset<SkeletonDataAsset>("modassets/boss_prison_01/boss_prison_01_SkeletonData.asset");
-            */
+            Reika = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/girlfriend_01/girlfriend_01_SkeletonData.asset");
+            Nami = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/girlfriend_02/girlfriend_02_SkeletonData.asset");
+            Merry = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/santa_01/santa_01_SkeletonData.asset");
+            //ESis = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/genbba_02/genbba_02_SkeletonData.asset");
+            Giant = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/gengiant_01/gengiant_01_SkeletonData.asset");
+            Shino = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/bakunyu_01/bakunyu_01_SkeletonData.asset");
+            Cassie = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/cassie_01/cassie_01_SkeletonData.asset");
+            Sally = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/boss_prison_01/boss_prison_01_SkeletonData.asset");
+            
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
             harmony.PatchAll(typeof(Skeleton));
@@ -74,7 +74,7 @@ namespace UPEHFHook
 
 
             Log.LogInfo("Fill them up.");
-
+/*
             var componentsToInitialize = new List<Type>
         {
             typeof(SkeletonSwapper),
@@ -88,7 +88,7 @@ namespace UPEHFHook
                 {
                     InstantiateSingleton(componentType);
                 }
-            }
+            }*/
             PerformerLoader.OnLoadPeformers += () =>
             {
                 string[] array = new string[1]
@@ -116,14 +116,14 @@ namespace UPEHFHook
                 }
             };
             
-        }
+        }/*
         private void InstantiateSingleton(Type type)
         {
             GameObject obj = new GameObject(type.Name);
             obj.AddComponent(type);
             DontDestroyOnLoad(obj);
             Log.LogInfo($"{type.Name} instantiated.");
-        }
+        }*/
 
     }
 }

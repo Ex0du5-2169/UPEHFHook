@@ -13,8 +13,8 @@ namespace UPEHFHook.Patches
 {
     internal class NewSwap
     {
-        [HarmonyPatch(typeof(CommonStates))]
-        [HarmonyPatch("LoveChange")]
+        [HarmonyPatch(typeof(NPCManager))]
+        [HarmonyPatch("Start")]
         [HarmonyPostfix]
 
         public static void CSPostFix(CommonStates partner)
@@ -22,17 +22,54 @@ namespace UPEHFHook.Patches
 
             if (partner.anim.skeleton.FindSlot("body_preg") == null)
             {
+                SkeletonAnimation skelAnim = partner.anim;
+                CommonStates skelCom = skelAnim.GetComponent<CommonStates>();
+                skelCom.parameters = partner.parameters;
+                SkeletonGraphic skelGraph = skelAnim.GetComponent<SkeletonGraphic>();
                 switch (partner.npcID)
                 {
                     case 5:
+                        skelAnim.skeletonDataAsset = UPEHFBase.Reika;
+                        skelAnim.initialSkinName = "default";
+                        skelAnim.Initialize(true);
+                        skelGraph.SetMaterialDirty();
+                        break;
                     case 6:
-                    case 90:
+                        skelAnim.skeletonDataAsset = UPEHFBase.Nami;
+                        skelAnim.initialSkinName = "default";
+                        skelAnim.Initialize(true);
+                        skelGraph.SetMaterialDirty();
+                        break;
+                    //case 90:
                     case 110:
+                        skelAnim.skeletonDataAsset = UPEHFBase.Giant;
+                        skelAnim.initialSkinName = "default";
+                        skelAnim.Initialize(true);
+                        skelGraph.SetMaterialDirty();
+                        break;
                     case 113:
+                        skelAnim.skeletonDataAsset = UPEHFBase.Cassie;
+                        skelAnim.initialSkinName = "default";
+                        skelAnim.Initialize(true);
+                        skelGraph.SetMaterialDirty();
+                        break;
                     case 114:
+                        skelAnim.skeletonDataAsset = UPEHFBase.Shino;
+                        skelAnim.initialSkinName = "default";
+                        skelAnim.Initialize(true);
+                        skelGraph.SetMaterialDirty();
+                        break;
                     case 115:
+                        skelAnim.skeletonDataAsset = UPEHFBase.Sally;
+                        skelAnim.initialSkinName = "default";
+                        skelAnim.Initialize(true);
+                        skelGraph.SetMaterialDirty();
+                        break;
                     case 116:
-                        SkeletonSwapper.SwapMatchingSkeletons();
+                        skelAnim.skeletonDataAsset = UPEHFBase.Merry;
+                        skelAnim.initialSkinName = "default";
+                        skelAnim.Initialize(true);
+                        skelGraph.SetMaterialDirty();
                         break;
                 }
             }

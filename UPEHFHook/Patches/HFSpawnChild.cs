@@ -97,12 +97,6 @@ namespace UPEHFHook.Patches
                             break;
                         }
                         break;
-
-                    default:
-                        UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + Girl.npcID);
-                    childNpcId = getgender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
-                    __result = childNpcId;
-                    break;
                 
             }
         }
