@@ -30,7 +30,7 @@ namespace UPEHFHook.Patches
                 if (npcPrefab == null) continue;
                 string name = npcPrefab.name.Replace("_prefab", "");
                 SkeletonAnimation skelAnim = npcPrefab.GetComponentInChildren<SkeletonAnimation>();
-                CommonStates partner = skelAnim.GetComponent<CommonStates>();
+                CommonStates partner = npcPrefab.GetComponentInChildren<CommonStates>();
 
                 if (partner.anim.skeleton.FindSlot("body_preg") == null)
                 {
