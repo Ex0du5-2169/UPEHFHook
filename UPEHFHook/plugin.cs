@@ -33,8 +33,9 @@ namespace UPEHFHook
         internal static ManualLogSource Log;
         public static SkeletonDataAsset[] skelDataAssets;
         public static AssetBundle Assets;
+        public static AssetBundle AltAssets;
 
-        
+
 
         void Awake()
         {
@@ -49,6 +50,7 @@ namespace UPEHFHook
                 Log.LogError("Failed to load assets!");
                 return;
             }
+
             harmony.PatchAll(typeof(AssetsLoader));
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));

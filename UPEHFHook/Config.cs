@@ -11,13 +11,12 @@ namespace UPEHFHook
     {
         public static Config Instance { get; private set; } = new Config();
 
-
-        //public ConfigEntry<bool> ChangeRapeRate { get; private set; }
         public ConfigEntry<bool> AllowAllPerfume { get; private set; }
+        //public ConfigEntry<bool> LoadAltAssets { get; private set; }
         internal void Init(ConfigFile conf)
         {
-            //ChangeRapeRate = conf.Bind<bool>("General", "ChangeRapeRate", true, "Increase the rate at which rapes occur.");
             AllowAllPerfume = conf.Bind<bool>("General", "AllowAllPerfume", false, "Allow perfume to be used on any NPC.");
+            //LoadAltAssets = conf.Bind<bool>("General", "LoadAltAssets", false, "Load assets from alternate file");
         }
     }
 }
