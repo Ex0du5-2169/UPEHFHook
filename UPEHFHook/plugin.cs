@@ -33,7 +33,7 @@ namespace UPEHFHook
         internal static ManualLogSource Log;
         public static SkeletonDataAsset[] skelDataAssets;
         public static AssetBundle Assets;
-        public static AssetBundle AltAssets;
+        //public static AssetBundle AltAssets;
 
 
 
