@@ -1,20 +1,21 @@
-﻿using BepInEx.Logging;
-using BepInEx;
+﻿using BepInEx;
+using BepInEx.Logging;
 using HarmonyLib;
+using HFramework;
+using HFramework.Hook;
+using HFramework.Performer;
+using HFramework.Scenes;
+using Spine;
+using Spine.Unity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Spine.Unity;
 using UnityEngine;
-using Spine;
-using UPEHFHook.Patches;
 using UnityEngine.SceneManagement;
-using HFramework;
-using HFramework.Performer;
-using HFramework.Scenes;
-using HFramework.Hook;
+using UPEHFHook.Patches;
 
 
 namespace UPEHFHook
@@ -30,15 +31,9 @@ namespace UPEHFHook
 
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
-        
-        public static SkeletonDataAsset Reika;
-        public static SkeletonDataAsset Nami;
-        public static SkeletonDataAsset Cassie;
-        public static SkeletonDataAsset Shino;
-        public static SkeletonDataAsset Sally;
-        public static SkeletonDataAsset Giant;
-        //public static SkeletonDataAsset ESis;
-        public static SkeletonDataAsset Merry;
+        public static SkeletonDataAsset[] skelDataAssets;
+        public static AssetBundle Assets;
+
         
 
         void Awake()
@@ -47,48 +42,21 @@ namespace UPEHFHook
             
             Log = this.Logger;
             Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-test-01");
-            string location = ((BaseUnityPlugin)this).Info.Location;
-            string newtext = "UPEHFHook.dll";
-            string text1 = location.TrimEnd(newtext.ToCharArray());
-            string text3 = text1 + "Assets/miassets";
-            AssetBundle val = AssetBundle.LoadFromFile(text3);
-            if (val == null)
+            string assetPath = Path.Combine(Path.GetDirectoryName(Info.Location), "Assets/miassets");
+            Assets = AssetBundle.LoadFromFile(assetPath);
+            if (Assets == null)
             {
-                UPEHFBase.Log.LogError("Failed to load assets!");
+                Log.LogError("Failed to load assets!");
                 return;
             }
-            Reika = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/girlfriend_01/girlfriend_01_SkeletonData.asset");
-            Nami = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/girlfriend_02/girlfriend_02_SkeletonData.asset");
-            Merry = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/santa_01/santa_01_SkeletonData.asset");
-            //ESis = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/genbba_02/genbba_02_SkeletonData.asset");
-            Giant = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/gengiant_01/gengiant_01_SkeletonData.asset");
-            Shino = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/bakunyu_01/bakunyu_01_SkeletonData.asset");
-            Cassie = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/cassie_01/cassie_01_SkeletonData.asset");
-            Sally = val.LoadAsset<SkeletonDataAsset>("Assets/Modassets/boss_prison_01/boss_prison_01_SkeletonData.asset");
-            
+            harmony.PatchAll(typeof(AssetsLoader));
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
-            harmony.PatchAll(typeof(Skeleton));
             //harmony.PatchAll(typeof(HFSpawnChild));
-            harmony.PatchAll(typeof(NewSwap));
 
 
             Log.LogInfo("Fill them up.");
-/*
-            var componentsToInitialize = new List<Type>
-        {
-            typeof(SkeletonSwapper),
-            typeof(SkeletonBundleLoader),
 
-        };
-
-            foreach (var componentType in componentsToInitialize)
-            {
-                if (FindObjectOfType(componentType) == null)
-                {
-                    InstantiateSingleton(componentType);
-                }
-            }*/
             PerformerLoader.OnLoadPeformers += () =>
             {
                 string[] array = new string[1]
@@ -116,14 +84,7 @@ namespace UPEHFHook
                 }
             };
             
-        }/*
-        private void InstantiateSingleton(Type type)
-        {
-            GameObject obj = new GameObject(type.Name);
-            obj.AddComponent(type);
-            DontDestroyOnLoad(obj);
-            Log.LogInfo($"{type.Name} instantiated.");
-        }*/
+        }
 
     }
 }

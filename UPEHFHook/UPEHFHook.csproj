@@ -90,11 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
-    <Compile Include="Patches\NewSwap.cs" />
+    <Compile Include="Patches\AssetsLoader.cs" />
     <Compile Include="Patches\HFSpawnChild.cs" />
-    <Compile Include="Patches\SkeletonBundleLoader.cs" />
-    <Compile Include="Patches\SkeletonSwapper.cs" />
-    <Compile Include="Patches\Skeleton.cs" />
     <Compile Include="Patches\GetPreg.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
