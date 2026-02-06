@@ -8,7 +8,11 @@ Allows more NPC chracters to get pregnant and give birth.
 
 # Current Version:
 1.0 Candidate - Test build
-Changes - New Swapping script by Shurutsue
+Changes:
+- New Swapping script by Shurutsue
+- Further simplified pregnancy by letting the game do the work
+- Removed loads of old code and the old swapping scripts
+- Optimisations for everyone
 
 # Installation:
 Place the included 'bepinex' folder in your Mad Island folder (install bepinex first, see below) and overwrite files if asked.
@@ -21,8 +25,6 @@ The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/t
 
 # Warnings:
 - Creating a brand new save is ALWAYS advisable when modding games. Please, for our combined sanity, make a new game and save separately when playing with mods.
-- Currently the mod will change the look of the NPCs that it affects. We're working on a fix. For now, just remember how they looked and use the 'operating table' workstation to change them back if my code fails to do so.
-- At present, the mod will swap the skeletons of any compatible characters when pregnancy is detected. Due to the way the game is coded we had to be very round-about with the way we approached it. The mod gains more info on the skeletons that need swapping as those characters have sex. Let the scenes play out to max (pink bar for MC scenes).
 - CombinedMeshDemosaic causes issues in the latest versions of the game. It could feasibly also cause conflicts with my mod. It is highly recommended to use the none.bat method and install Yotan's Core mod and Unofficial patches instead.
 
 # Girls available for impregnation in the mod:
@@ -30,11 +32,18 @@ The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/t
 - Sally
 - Cassie
 - Giant
-- Large female native (removed due to pre-existing support)
-- Elder sister native (removed as support is expected soon)
+- Large female native (removed due to official support)
+- Elder sister native (removed as official support is expected soon)
 - Reika
 - Nami
 - Merry
+
+# For Mod-makers:
+To add custom girls to UPE:
+- Ensure you have added a belly asset and created suitable delivery animations (or duplicate and rename existing animations like I did)
+- Make sure you have exported the .json, .atlas.txt and .png and changed the version number in the .json to read '3.8.99' (if using version 3.8.75)
+- Copy those 3 files and place them in Bepinex/config/skeletonReplacers/NPC_Name (see the existing folder layout, you'll understand)
+- All files and their folder MUST use the exact names the game uses. For example, Sally is boss_prison_01 (they need to match the prefabs after all)
 
 # Planned updates:
 - Custom birth chart (births calculated based on the NPCs rather than the current HFramework defaults).
