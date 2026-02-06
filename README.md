@@ -47,7 +47,8 @@ To add custom girls to UPE:
 - All files and their folder MUST use the exact names the game uses. For example, Sally is boss_prison_01 (they need to match the prefabs after all)
 
 # Planned updates:
-- Custom birth chart (births calculated based on the NPCs rather than the current HFramework defaults).
+- Kana, Lulu and Mira
+- Custom birth chart (births calculated based on the NPCs rather than the current HFramework defaults)
 - Cumflation effects + cum leaking?
 - Hybrid Children NPCs?
 
