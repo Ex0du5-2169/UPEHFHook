@@ -2,9 +2,9 @@
 Allows more NPC chracters to get pregnant and give birth.
 
 # What it does not do:
-The mod DOES NOT add any new animations (the delivery animations are just duplicates of existing character anims). There are no new sex scenes, there are no new delivery scenes, yet. My code simply duplicates animations they do have under a different name to trick the game.
-It DOES NOT add any new NPCs.
-Custom NPCs are NOT supported (well, not without you doing the extra art and animations yourself).
+- The mod DOES NOT add any new animations (the delivery animations are just duplicates of existing character anims). There are no new sex scenes, there are no new delivery scenes, yet. My code simply duplicates animations they do have under a different name to trick the game.
+- It DOES NOT add any new NPCs.
+- Custom NPCs are NOT supported (well, not without you doing the extra art and animations yourself).
 
 # Current Version:
 1.0 Candidate - Test build
@@ -50,7 +50,7 @@ Ex0du5_2169 - Me - Buy me a drink, if you want to - https://ko-fi.com/ex0du5_216
 
 nm088 - for the huge amount of help and advice.
 
-Yotan - https://github.com/yotan-dev/mad-island-mods/releases - For his advice and his efforts in making HFramework.
+Yotan - https://github.com/yotan-dev/mad-island-mods/releases - For his advice and his efforts in making YotanModCore & HFramework.
 
 Kittii - for creating the new preg bellies (and boobs in some cases).
 
