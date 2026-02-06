@@ -8,6 +8,7 @@ Allows more NPC chracters to get pregnant and give birth.
 
 # Current Version:
 1.0 Candidate - Test build
+
 Changes:
 - New Swapping script by Shurutsue
 - Further simplified pregnancy by letting the game do the work
