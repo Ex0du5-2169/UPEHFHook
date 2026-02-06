@@ -19,7 +19,7 @@ namespace UPEHFHook.Patches
         {
             if (UPEHFHook.Config.Instance.AllowAllPerfume.Value)
             {
-                //Should be fairly obvious, allows use of the perfume item on any NPC added to this list. As it stands, I've set it to everyone.
+                //Should be fairly obvious, allows use of the perfume item on any NPC added to this list. As it stands, I've set it to everyone (default off to prevent SSNPC conflicts).
                 if (!__result)
                 {
                     __result = true;
