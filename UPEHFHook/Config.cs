@@ -13,9 +13,12 @@ namespace UPEHFHook
 
         public ConfigEntry<bool> AllowAllPerfume { get; private set; }
 
+        //public ConfigEntry<int[]> AllowedIDs { get; private set; }
+
         internal void Init(ConfigFile conf)
         {
             AllowAllPerfume = conf.Bind<bool>("General", "AllowAllPerfume", false, "Allow perfume to be used on any NPC.");
+            //AllowedIDs = conf.Bind<int[]>("Genera", "AllowedIDs", UPEHFBase.AllowedID, "Allowed IDs for pregnancy.");
         }
     }
 }
