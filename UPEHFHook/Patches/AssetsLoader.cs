@@ -15,7 +15,7 @@ namespace UPEHFHook.Patches
 {
     static class AssetsLoader
     {
-        [HarmonyPatch(typeof(NPCManager), "Start"), HarmonyPostfix]
+        [HarmonyPatch(typeof(SaveManager), "LoadDLC"), HarmonyPostfix]
         private static void PatchSkeletons(NPCManager __instance)
         {
 
