@@ -31,9 +31,6 @@ namespace UPEHFHook
 
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
-        public static SkeletonDataAsset[] skelDataAssets;
-        public static AssetBundle Assets;
-        public static AssetBundle AltAssets;
 
 
 
@@ -42,14 +39,7 @@ namespace UPEHFHook
             UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
             
             Log = this.Logger;
-            Log.LogInfo("Mad Island Universal Pregnancy Enabler 0.9.9-test-01");
-            string assetPath = Path.Combine(Path.GetDirectoryName(Info.Location), "Assets/miassets");
-            Assets = AssetBundle.LoadFromFile(assetPath);
-            if (Assets == null)
-            {
-                Log.LogError("Failed to load assets!");
-                return;
-            }
+            Log.LogInfo("Mad Island Universal Pregnancy Enabler 1.0 - Candidate");
 
             harmony.PatchAll(typeof(AssetsLoader));
             harmony.PatchAll(typeof(UPEHFBase));
@@ -57,7 +47,7 @@ namespace UPEHFHook
             //harmony.PatchAll(typeof(HFSpawnChild));
 
 
-            Log.LogInfo("Fill them up.");
+            Log.LogInfo("Get pregnant, get pregnant, get pregnant!");
 
             PerformerLoader.OnLoadPeformers += () =>
             {
