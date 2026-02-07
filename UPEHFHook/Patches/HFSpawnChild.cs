@@ -70,10 +70,6 @@ namespace UPEHFHook.Patches
                     }
 
                     //case NpcID.Kana:
-                    case NpcID.ElderSisterNative:
-                    childNpcId = getgender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
-                    __result = childNpcId;
-                    break;
 
                     case NpcID.Yona:
                         switch (Girl.pregnant[0])
