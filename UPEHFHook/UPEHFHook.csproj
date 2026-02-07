@@ -48,8 +48,8 @@
     <Reference Include="AsmResolver.PE.File, Version=5.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AsmResolver.PE.File.5.5.1\lib\netstandard2.0\AsmResolver.PE.File.dll</HintPath>
     </Reference>
-    <Reference Include="assembly-csharp-publicized">
-      <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\Mad Island_Data\Managed\assembly-csharp-publicized.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>Ref\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\BepInEx\core\BepInEx.dll</HintPath>
