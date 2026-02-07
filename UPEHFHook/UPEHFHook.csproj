@@ -34,8 +34,9 @@
     <Reference Include="0Harmony">
       <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\BepInEx\core\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\Mad Island_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ref\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\BepInEx\core\BepInEx.dll</HintPath>
