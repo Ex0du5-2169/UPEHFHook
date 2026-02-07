@@ -27,6 +27,7 @@ The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/t
 # Warnings:
 - Creating a brand new save is ALWAYS advisable when modding games. Please, for our combined sanity, make a new game and save separately when playing with mods.
 - CombinedMeshDemosaic causes issues in the latest versions of the game. It could feasibly also cause conflicts with my mod. It is highly recommended to use the none.bat method and install Yotan's Core mod and Unofficial patches instead.
+- Some preg bellies may look a bit odd due to issues when using Spine. Feel free to submit new Spine assets if you wish to fix these yourself. If not, just wait, I'll get around to it.
 
 # Girls available for impregnation in the mod:
 - Shino
@@ -40,11 +41,13 @@ The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/t
 - Merry
 
 # For Mod-makers:
-To add custom girls to UPE:
+To add custom girls to UPE (unavailable currently, waiting on semi-automated prefab selectors being introduced to HFramework so you can add custom H scenes, the points below will be pointless without it):
 - Ensure you have added a belly asset and created suitable delivery animations (or duplicate and rename existing animations like I did)
 - Make sure you have exported the .json, .atlas.txt and .png and changed the version number in the .json to read '3.8.99' (if using version 3.8.75)
 - Copy those 3 files and place them in Bepinex/config/skeletonReplacers/NPC_Name (see the existing folder layout, you'll understand)
 - All files and their folder MUST use the exact names the game uses. For example, Sally is boss_prison_01 (they need to match the prefabs after all)
+
+Note: You will need to add them to the 'ispregable' method (I'll be coding in a way for you to do this via the config file in a later release).
 
 # Planned updates:
 - Kana, Lulu and Mira
