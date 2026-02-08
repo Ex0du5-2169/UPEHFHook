@@ -31,7 +31,7 @@ namespace UPEHFHook
 
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
-        public static int[] AllowedIDs = { 5, 6, 110, 113, 114, 115, 116 };
+        public static int[] AllowedIDs = { 5, 6, 110, 113, 114, 115, 116, 118, 162, 163 };
         public static List<int> PregableID = new List<int>(AllowedIDs);
 
 

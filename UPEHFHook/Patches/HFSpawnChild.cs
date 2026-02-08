@@ -42,7 +42,7 @@ namespace UPEHFHook.Patches
                     case NpcID.Reika:
                     case NpcID.Cassie:
                     case NpcID.Giant: //Remember to switch her to birth young giant when she's actually implemented in the game/has conntent
-                        //case NpcID.Lulu:
+                    case NpcID.Lulu:
                         if (getgender == 0)
                         {
                             childNpcId = 140;
@@ -57,8 +57,8 @@ namespace UPEHFHook.Patches
                     case NpcID.Nami:
                     case NpcID.Sally: //Maybe add chance for normal native births too?
                     case NpcID.Shino:
-                        //case NpcID.Kana: //Maybe normal natives for her too? Considering the boss R that can happen.
-                        //case NpcID.Mira:
+                    case NpcID.Kana: //Maybe normal natives for her too? Considering the boss R that can happen.
+                    case NpcID.Mira:
                         if (getgender == 0)
                         {
                             childNpcId = 142;
