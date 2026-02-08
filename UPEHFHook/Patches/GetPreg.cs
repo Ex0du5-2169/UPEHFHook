@@ -30,24 +30,26 @@ namespace UPEHFHook.Patches
 
         [HarmonyPatch(typeof(SexManager))]
         [HarmonyPatch("IsPregable")]
-        [HarmonyPrefix]
+        [HarmonyPostfix]
 
-        public static void IsPregablePatch(CommonStates __instance, ref bool __result)
+        public static void IsPregablePatch(ref bool __result, int npcID)
         {
-            switch (__instance.npcID)
+            if (UPEHFBase.PregableID.Contains(npcID))
             {
-                case 5:
-                case 6:
-                case 110:
-                case 113:
-                case 114:
-                case 115:
-                case 116:
-                    //case 118:
-                    //case 162:
-                    //case 163:
-                    __result = true;
-                    break;
+                __result = true;
+            }
+        }
+
+        [HarmonyPatch(typeof(RandomCharacter), nameof(RandomCharacter.EquipableNPCCache)), HarmonyPostfix]
+        public static void EquipableNPCCache(List<int> __result, string itemKey, int startID = -1)
+        {
+            if (itemKey == "acce_s_00")
+            {
+                foreach (int npcID in UPEHFBase.PregableID)
+                {
+                    if (!__result.Contains(npcID))
+                        __result.Add(npcID);
+                }
             }
         }
 

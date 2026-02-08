@@ -31,11 +31,13 @@ namespace UPEHFHook
 
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
-
+        public static int[] AllowedIDs = { 5, 6, 110, 113, 114, 115, 116 };
+        public static List<int> PregableID = new List<int>(AllowedIDs);
 
 
         void Awake()
         {
+
             UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
             
             Log = this.Logger;

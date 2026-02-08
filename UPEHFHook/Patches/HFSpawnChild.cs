@@ -39,58 +39,102 @@ namespace UPEHFHook.Patches
                 {
                     case NpcID.Reika:
                     case NpcID.Cassie:
+                    case NpcID.Giant: //Remember to switch her to birth young giant when she's actually implemented in the game/has conntent
                         //case NpcID.Lulu:
-                        childNpcId = getgender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
-                        __result = childNpcId;
-                        break;
-                    case NpcID.Giant:
-                        childNpcId = getgender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl; //change to Giant2 when she's implemented
-                        __result = childNpcId;
+                        if (getgender == 0)
+                        {
+                            childNpcId = 140;
+                            __result = childNpcId;
+                        }
+                        else
+                        {
+                            childNpcId = 141;
+                            __result = childNpcId;
+                        }
                         break;
                     case NpcID.Nami:
                     case NpcID.Sally: //Maybe add chance for normal native births too?
                     case NpcID.Shino:
+                        //case NpcID.Kana: //Maybe normal natives for her too? Considering the boss R that can happen.
                         //case NpcID.Mira:
-                        childNpcId = getgender == Gender.Male ? NpcID.UnderGroundBoy : NpcID.UnderGroundGirl;
-                        __result = childNpcId;
+                        if (getgender == 0)
+                        {
+                            childNpcId = 142;
+                            __result = childNpcId;
+                        }
+                        else
+                        {
+                            childNpcId = 143;
+                            __result = childNpcId;
+                        }
                         break;
                     case NpcID.Merry: //December-only present birth chance?
                         if ((System.DateTime.Today.Month == 12) && (randomBirth >= 10))
                         {
-                            childNpcId = getgender == Gender.Male ? NpcID.PresentBlue : NpcID.PresentRed;
-                            UPEHFBase.Log.LogInfo("Congratulations, Merry birthed a present!");
-                            randomBirth = -1;
-                            __result = childNpcId;
+                            if (getgender == 0)
+                            {
+                                childNpcId = 172;
+                                UPEHFBase.Log.LogInfo("Congratulations, Merry birthed a present!");
+                                randomBirth = -1;
+                                __result = childNpcId;
+                            }
+                            else
+                            {
+                                childNpcId = 170;
+                                __result = childNpcId;
+                            }
                             break;
+                        }
+                        else if (getgender == 0)
+                        {
+                            childNpcId = 16;
+                            __result = childNpcId;
                         }
                         else
                         {
-                            childNpcId = getgender == Gender.Male ? NpcID.NativeBoy : NpcID.NativeGirl;
+                            childNpcId = 14;
                             __result = childNpcId;
-                            break;
                         }
-
-                    //case NpcID.Kana:
+                        break;
 
                     case NpcID.Yona:
                         switch (Girl.pregnant[0])
                         {
                             case NpcID.Spike:
-                                childNpcId = getgender == Gender.Male ? NpcID.Spider : NpcID.Spider2;
-                                __result = childNpcId;
+                                if (getgender == 0)
+                                {
+                                    childNpcId = 21;
+                                    __result = childNpcId;
+                                }
+                                else
+                                {
+                                    childNpcId = 30;
+                                    __result = childNpcId;
+                                }
                                 break;
                             case NpcID.Planton:
-                                childNpcId = getgender == Gender.Male ? NpcID.Mandrake : NpcID.Nepenthes;
-                                __result = childNpcId;
+                                if (getgender == 0)
+                                {
+                                    childNpcId = 26;
+                                    __result = childNpcId;
+                                }
+                                else
+                                {
+                                    childNpcId = 27;
+                                    __result = childNpcId;
+                                }
                                 break;
                             case NpcID.Bigfoot:
-                                childNpcId = getgender == Gender.Male ? NpcID.LargeNativeBoy : NpcID.LargeNativeGirl;
-                                __result = childNpcId;
-                                break;
-                            default:
-                                UPEHFBase.Log.LogWarning("GetChildNpcId: Unexpected npcID: " + Girl.npcID);
-                                childNpcId = getgender == Gender.Male ? NpcID.Son : NpcID.YoungLady;
-                                __result = childNpcId;
+                                if (getgender == 0)
+                                {
+                                    childNpcId = 140;
+                                    __result = childNpcId;
+                                }
+                                else
+                                {
+                                    childNpcId = 141;
+                                    __result = childNpcId;
+                                }
                                 break;
                         }
                         break;
