@@ -99,7 +99,6 @@ namespace UPEHFHook.Patches
                             __result = childNpcId;
                         }
                         break;
-
                     case NpcID.Yona:    //Add a valentines birth chance too? Wait until Ton adds Valentines content.
                         switch (Girl.pregnant[0])
                         {
@@ -153,9 +152,7 @@ namespace UPEHFHook.Patches
                                 break;
                         }
                         break;
-
                 }
-
             }
             else
             {
