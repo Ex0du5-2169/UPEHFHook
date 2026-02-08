@@ -34,7 +34,7 @@ namespace UPEHFHook.Patches
             getgender = gender;
             randomBirth = UnityEngine.Random.Range(0, 20);
 
-            //Add a valentines birth chance too? Which NPC?
+            //Add a valentines birth chance too?
             if (SaveManager.dlc00 != null)
             {
                 switch (Girl.npcID)
@@ -100,7 +100,7 @@ namespace UPEHFHook.Patches
                         }
                         break;
 
-                    case NpcID.Yona:
+                    case NpcID.Yona:    //Add a valentines birth chance too? Wait until Ton adds Valentines content.
                         switch (Girl.pregnant[0])
                         {
                             case NpcID.Spike:
