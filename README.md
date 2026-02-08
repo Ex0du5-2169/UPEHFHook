@@ -14,6 +14,7 @@ Changes:
 - Further simplified pregnancy by letting the game do the work
 - Removed loads of old code and the old swapping scripts
 - Optimisations for everyone
+- Preg charms now work for all girls covered by this mod
 
 # Installation:
 Place the included 'bepinex' folder in your Mad Island folder (install bepinex first, see below) and overwrite files if asked.
