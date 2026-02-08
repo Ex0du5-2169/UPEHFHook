@@ -139,6 +139,18 @@ namespace UPEHFHook.Patches
                                     __result = childNpcId;
                                 }
                                 break;
+                            case NpcID.Werewolf:
+                                if (getgender == 0)
+                                {
+                                    childNpcId = 24;
+                                    __result = childNpcId;
+                                }
+                                else
+                                {
+                                    childNpcId = 35;
+                                    __result = childNpcId;
+                                }
+                                break;
                         }
                         break;
 
@@ -254,6 +266,18 @@ namespace UPEHFHook.Patches
                                 else
                                 {
                                     childNpcId = 11;
+                                    __result = childNpcId;
+                                }
+                                break;
+                            case NpcID.Werewolf:
+                                if (getgender == 0)
+                                {
+                                    childNpcId = 24;
+                                    __result = childNpcId;
+                                }
+                                else
+                                {
+                                    childNpcId = 35;
                                     __result = childNpcId;
                                 }
                                 break;
