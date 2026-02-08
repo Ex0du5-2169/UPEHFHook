@@ -39,6 +39,9 @@ The current stable Bepinex build - https://github.com/BepInEx/BepInEx/releases/t
 - Reika
 - Nami
 - Merry
+- Kana
+- Lulu
+- Mira
 
 # For Mod-makers:
 To add custom girls to UPE (unavailable currently, waiting on semi-automated prefab selectors being introduced to HFramework so you can add custom H scenes, the points below will be pointless without it):
@@ -50,7 +53,6 @@ To add custom girls to UPE (unavailable currently, waiting on semi-automated pre
 Note: You will need to add them to the 'ispregable' method (I'll be coding in a way for you to do this via the config file in a later release).
 
 # Planned updates:
-- Kana, Lulu and Mira
 - Custom birth chart (births calculated based on the NPCs rather than the current HFramework defaults)
 - Cumflation effects + cum leaking?
 - Hybrid Children NPCs?
