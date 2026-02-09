@@ -15,35 +15,29 @@ namespace UPEHFHook.Patches
 {
     public class HFSpawnChild
     {
-        public static CommonStates Girl;
-        public static int getgender;
         public static int[] month = { 1, 11, 12 };
-        public void newChild(CommonStates girl)
-        {
-            Girl = girl;
-        }
+
 
         [HarmonyPatch(typeof(SpawnChild))]
         [HarmonyPatch("GetChildNpcId")]
         [HarmonyPrefix]
 
-        private static void RecalculateChild(ref int __result, int gender)
+        private static void RecalculateChild(ref int __result, int gender, SpawnChild __instance)
         {
             int childNpcId;
             int randomBirth;
-            getgender = gender;
             randomBirth = UnityEngine.Random.Range(0, 20);
 
             //Add a valentines birth chance too?
             if (SaveManager.dlc00 != null)
             {
-                switch (Girl.npcID)
+                switch (__instance.Girl.npcID)
                 {
                     case NpcID.Reika:
                     case NpcID.Cassie:
                     case NpcID.Giant: //Remember to switch her to birth young giant when she's actually implemented in the game/has conntent
                     case NpcID.Lulu:
-                        if (getgender == 0)
+                        if (gender == 0)
                         {
                             childNpcId = 140;
                             __result = childNpcId;
@@ -59,7 +53,7 @@ namespace UPEHFHook.Patches
                     case NpcID.Shino:
                     case NpcID.Kana: //Maybe normal natives for her too? Considering the boss R that can happen.
                     case NpcID.Mira:
-                        if (getgender == 0)
+                        if (gender == 0)
                         {
                             childNpcId = 142;
                             __result = childNpcId;
@@ -73,7 +67,7 @@ namespace UPEHFHook.Patches
                     case NpcID.Merry: //December-only present birth chance?
                         if ((month.Contains(System.DateTime.Now.Month)) && (randomBirth >= 10))
                         {
-                            if (getgender == 0)
+                            if (gender == 0)
                             {
                                 childNpcId = 172;
                                 UPEHFBase.Log.LogInfo("Congratulations, Merry birthed a present!");
@@ -88,7 +82,7 @@ namespace UPEHFHook.Patches
                             }
                             break;
                         }
-                        else if (getgender == 0)
+                        else if (gender == 0)
                         {
                             childNpcId = 16;
                             __result = childNpcId;
@@ -100,10 +94,10 @@ namespace UPEHFHook.Patches
                         }
                         break;
                     case NpcID.Yona:    //Add a valentines birth chance too? Wait until Ton adds Valentines content.
-                        switch (Girl.pregnant[0])
+                        switch (__instance.Girl.pregnant[0])
                         {
                             case NpcID.Spike:
-                                if (getgender == 0)
+                                if (gender == 0)
                                 {
                                     childNpcId = 21;
                                     __result = childNpcId;
@@ -115,7 +109,7 @@ namespace UPEHFHook.Patches
                                 }
                                 break;
                             case NpcID.Planton:
-                                if (getgender == 0)
+                                if (gender == 0)
                                 {
                                     childNpcId = 26;
                                     __result = childNpcId;
@@ -127,7 +121,7 @@ namespace UPEHFHook.Patches
                                 }
                                 break;
                             case NpcID.Bigfoot:
-                                if (getgender == 0)
+                                if (gender == 0)
                                 {
                                     childNpcId = 140;
                                     __result = childNpcId;
@@ -139,7 +133,7 @@ namespace UPEHFHook.Patches
                                 }
                                 break;
                             case NpcID.Werewolf:
-                                if (getgender == 0)
+                                if (gender == 0)
                                 {
                                     childNpcId = 24;
                                     __result = childNpcId;
@@ -156,14 +150,14 @@ namespace UPEHFHook.Patches
             }
             else
             {
-                switch (Girl.npcID)
+                switch (__instance.Girl.npcID)
                 {
                     case NpcID.Reika:
                     case NpcID.Giant:
                     case NpcID.Cassie:
                         //case NpcID.Kana:
                         //case NpcID.Lulu:
-                        if (getgender == 0)
+                        if (gender == 0)
                         {
                             childNpcId = 90;
                             __result = childNpcId;
@@ -175,7 +169,7 @@ namespace UPEHFHook.Patches
                         }
                         break;
                     case NpcID.Nami:
-                        if (getgender == 0)
+                        if (gender == 0)
                         {
                             childNpcId = 73;
                             __result = childNpcId;
@@ -188,7 +182,7 @@ namespace UPEHFHook.Patches
                         break;
                     case NpcID.Shino:
                     case NpcID.Sally:
-                        if (getgender == 0)
+                        if (gender == 0)
                         {
                             childNpcId = 15;
                             __result = childNpcId;
@@ -202,7 +196,7 @@ namespace UPEHFHook.Patches
                     case NpcID.Merry:
                         if ((month.Contains(System.DateTime.Now.Month)) && (randomBirth >= 10))
                         {
-                            if (getgender == 0)
+                            if (gender == 0)
                             {
                                 childNpcId = 172;
                                 UPEHFBase.Log.LogInfo("Congratulations, Merry birthed a present!");
@@ -216,7 +210,7 @@ namespace UPEHFHook.Patches
                             }
                             break;
                         }
-                        else if (getgender == 0)
+                        else if (gender == 0)
                         {
                             childNpcId = 15;
                             __result = childNpcId;
@@ -228,10 +222,10 @@ namespace UPEHFHook.Patches
                         }
                         break;
                     case NpcID.Yona:
-                        switch (Girl.pregnant[0])
+                        switch (__instance.Girl.pregnant[0])
                         {
                             case NpcID.Spike:
-                                if (getgender == 0)
+                                if (gender == 0)
                                 {
                                     childNpcId = 21;
                                     __result = childNpcId;
@@ -243,7 +237,7 @@ namespace UPEHFHook.Patches
                                 }
                                 break;
                             case NpcID.Planton:
-                                if (getgender == 0)
+                                if (gender == 0)
                                 {
                                     childNpcId = 26;
                                     __result = childNpcId;
@@ -255,7 +249,7 @@ namespace UPEHFHook.Patches
                                 }
                                 break;
                             case NpcID.Bigfoot:
-                                if (getgender == 0)
+                                if (gender == 0)
                                 {
                                     childNpcId = 17;
                                     __result = childNpcId;
@@ -267,7 +261,7 @@ namespace UPEHFHook.Patches
                                 }
                                 break;
                             case NpcID.Werewolf:
-                                if (getgender == 0)
+                                if (gender == 0)
                                 {
                                     childNpcId = 24;
                                     __result = childNpcId;

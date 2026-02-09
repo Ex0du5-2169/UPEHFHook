@@ -42,8 +42,9 @@
     <Reference Include="BepInEx">
       <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
-    <Reference Include="HFramework">
-      <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\BepInEx\plugins\HFramework\HFramework.dll</HintPath>
+    <Reference Include="HFramework, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ref\HFramework.dll</HintPath>
     </Reference>
     <Reference Include="spine-unity">
       <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\Mad Island_Data\Managed\spine-unity.dll</HintPath>
