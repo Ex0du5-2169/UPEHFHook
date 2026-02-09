@@ -550,7 +550,8 @@ namespace UPEHFHook.Patches
                 new CodeInstruction(OpCodes.Ldfld, childGender),
                 new CodeInstruction(OpCodes.Ldarg_0),
                 new CodeInstruction(OpCodes.Ldfld, common),
-                CodeInstruction.Call((int a, int gender, CommonStates npc) => BirthChart(a, gender, npc)),
+
+                CodeInstruction.Call(typeof(DeliveryPatches), nameof(DeliveryPatches.BirthChart)),
                 new CodeInstruction(OpCodes.Stloc_S, currentChild),
                 new CodeInstruction(OpCodes.Ldloc_S, currentChild),
             });
