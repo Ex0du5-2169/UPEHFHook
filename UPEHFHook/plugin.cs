@@ -21,7 +21,6 @@ using UPEHFHook.Patches;
 namespace UPEHFHook
 {
     [BepInPlugin(modGUID, modName, modVersion)]
-    [BepInDependency("HFramework", "1.1.2")]
     public class UPEHFBase : BaseUnityPlugin
     {
         private const string modGUID = "Ex.MadIslandUPE";
@@ -46,7 +45,7 @@ namespace UPEHFHook
             harmony.PatchAll(typeof(AssetsLoader));
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
-            //harmony.PatchAll(typeof(HFSpawnChild));
+            DeliveryPatches.DoPatch(harmony);
 
 
             Log.LogInfo("Get pregnant, get pregnant, get pregnant!");
