@@ -3,6 +3,7 @@ using HarmonyLib;
 using HFramework;
 using Spine.Unity;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace UPEHFHook.Patches
 {
     static class AssetsLoader
     {
+        static Dictionary<int, SkeletonDataAsset> cache = new Dictionary<int, SkeletonDataAsset>();
+
         [HarmonyPatch(typeof(SaveManager), nameof(SaveManager.LoadDLC)), HarmonyPostfix]
         private static void ReplaceSkeletons()
         {
@@ -27,7 +30,12 @@ namespace UPEHFHook.Patches
                 try
                 {
                     SkeletonAnimation prefabAnimation = npcPrefab.GetComponentInChildren<SkeletonAnimation>();
-
+                    if (cache.ContainsKey(i))
+                    {
+                        prefabAnimation.skeletonDataAsset = cache[i];
+                        UPEHFBase.Log.LogWarning("Replaced Skeleton for NPC '" + name + "' with npcID [" + i + "] from cache.");
+                        continue;
+                    }
                     // Load files
                     byte[] textureData = File.ReadAllBytes(npcPrefabPath + "/" + name + ".png");
                     TextAsset skeletonDataFile = new TextAsset(File.ReadAllText(npcPrefabPath + "/" + name + ".json"));
@@ -51,6 +59,7 @@ namespace UPEHFHook.Patches
 
                     // Load and setup skeletonData
                     SkeletonDataAsset skeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(skeletonDataFile, atlasAsset, true, 0.01f);
+                    cache[i] = skeletonDataAsset;
                     prefabAnimation.skeletonDataAsset = skeletonDataAsset;
                     prefabAnimation.Initialize(true);
 
