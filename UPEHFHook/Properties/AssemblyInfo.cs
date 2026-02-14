@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("UPEHFHook")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Mad Island Universal Pregnancy Expansion")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UPEHFHook")]
-[assembly: AssemblyCopyright("Copyright ©  2025")]
+[assembly: AssemblyProduct("MadIslandUPE")]
+[assembly: AssemblyCopyright("Ex0du5_2169 Copyright ©  2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

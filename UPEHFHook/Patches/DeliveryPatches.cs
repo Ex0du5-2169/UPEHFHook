@@ -1,11 +1,13 @@
 ﻿using HarmonyLib;
+using HFramework;
 using HFramework.Handlers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using UPEHFHook.Patches;
 using YotanModCore.Consts;
-using System.Linq;
 
 
 
@@ -16,16 +18,19 @@ namespace UPEHFHook.Patches
     {
         public static void DoPatch(Harmony harmony)
         {
-            harmony.Patch(
-                typeof(SpawnChild).GetMethod("GetChildNpcId"),
-                postfix: new HarmonyMethod(typeof(YotanDeliveryPatch).GetMethod("RecalculateChild"))
-            );
-        }
-
-        private static void RecalculateChild(ref int __result, int gender, SpawnChild __instance)
-        {
-            __result = DeliveryPatches.BirthChart(__result, gender, __instance.Girl);
-            return;
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("HFramework"))
+            {
+                UPEHFBase.Log.LogInfo("Found HFramework - Patching HFramework's child result");
+                harmony.Patch(
+                    typeof(SpawnChild).GetMethod("GetChildNpcId"),
+                    postfix: new HarmonyMethod(typeof(YotanDeliveryPatch).GetMethod(nameof(YotanDeliveryPatch2.GetChildNpcIdPatch)))
+                );
+            }
+            else
+            {
+                UPEHFBase.Log.LogDebug("Patching delivery...");
+                harmony.PatchAll(typeof(DeliveryPatches));
+            }
         }
     }
 
@@ -308,6 +313,13 @@ namespace UPEHFHook.Patches
             });
             return cm.Instructions();
         }
+    }
+}
+internal static class YotanDeliveryPatch2
+{
+    public static void GetChildNpcIdPatch(ref int __result, int gender, SpawnChild __instance)
+    {
+        __result = DeliveryPatches.BirthChart(__result, gender, __instance.Girl);
     }
 }
 
