@@ -49,6 +49,14 @@ namespace UPEHFHook.Patches
                     texture.wrapMode = TextureWrapMode.Clamp;
                     texture.filterMode = FilterMode.Bilinear;
                     texture.anisoLevel = 1;
+                    Color[] pixels = texture.GetPixels();
+                    int i1 = new int();
+                    for (i1 = 0; i1 < pixels.Length; i1++)
+                    {
+                        Color premultiplied = new Color(pixels[i1].r * pixels[i1].a, pixels[i1].g * pixels[i1].a, pixels[i1].b * pixels[i1].a, pixels[i1].a);
+                        pixels[i1] = premultiplied;
+                    }
+                    texture.SetPixels(pixels);
                     texture.Apply(true, false);
                     texture.Compress(true);
                     texture.Apply(false, true);

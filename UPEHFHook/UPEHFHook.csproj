@@ -46,7 +46,7 @@
     </Reference>
     <Reference Include="HFramework, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Ref\HFramework.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\Yotan\HFramework\HFramework.dll</HintPath>
     </Reference>
     <Reference Include="spine-unity">
       <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\Mad Island_Data\Managed\spine-unity.dll</HintPath>
@@ -90,8 +90,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\Mad Island_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="YotanModCore">
-      <HintPath>H:\SteamLibrary\steamapps\common\Mad Island\BepInEx\plugins\YotanModCore\YotanModCore.dll</HintPath>
+    <Reference Include="YotanModCore, Version=2.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\Yotan\BepInEx\plugins\YotanModCore\YotanModCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

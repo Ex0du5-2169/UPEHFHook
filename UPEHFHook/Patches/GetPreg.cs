@@ -12,23 +12,6 @@ namespace UPEHFHook.Patches
     public class GetPreg
     {
 
-        [HarmonyPatch(typeof(NPCManager))]
-        [HarmonyPatch("IsPerfumeNPC")]
-        [HarmonyPostfix]
-
-        public static void PerfumeFix(NPCManager __instance, ref bool __result, CommonStates common)
-        {
-            if (UPEHFHook.Config.Instance.AllowAllPerfume.Value)
-            {
-                //Should be fairly obvious, allows use of the perfume item on any NPC added to this list. As it stands, I've set it to everyone (default off to prevent SSNPC conflicts).
-                if (!__result)
-                {
-                    __result = true;
-
-                }
-            }
-        }
-
         [HarmonyPatch(typeof(SexManager), nameof(SexManager.IsPregable)), HarmonyPostfix]
         public static void IsPregablePatch(ref bool __result, int npcID)
         {

@@ -317,9 +317,9 @@ namespace UPEHFHook.Patches
 }
 internal static class YotanDeliveryPatch2
 {
-    public static void GetChildNpcIdPatch(ref int __result, int gender, SpawnChild __instance)
+    public static void GetChildNpcIdPatch(ref int __result, int gender, CommonStates girl)
     {
-        __result = DeliveryPatches.BirthChart(__result, gender, __instance.Girl);
+        __result = DeliveryPatches.BirthChart(__result, gender, girl);
     }
 }
 
