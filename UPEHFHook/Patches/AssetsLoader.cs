@@ -9,74 +9,87 @@ using UnityEngine;
 
 namespace UPEHFHook.Patches
 {
-    static class AssetsLoader
+    internal static class AssetsLoader
     {
-        static Dictionary<int, SkeletonDataAsset> cache = new Dictionary<int, SkeletonDataAsset>();
+        private static Texture2D PadToMultipleOf4(Texture2D src)
+        {
+            int w = (src.width + 3) & -4;
+            int h = (src.height + 3) & -4;
+            if (w == src.width && h == src.height)
+            {
+                return src;
+            }
+            RenderTexture rt = RenderTexture.GetTemporary(src.width, src.height, 0, RenderTextureFormat.ARGB32);
+            Graphics.Blit(src, rt);
+            RenderTexture prev = RenderTexture.active;
+            RenderTexture.active = rt;
+            Texture2D readable = new Texture2D(src.width, src.height, TextureFormat.RGBA32, mipChain: false);
+            readable.ReadPixels(new Rect(0f, 0f, src.width, src.height), 0, 0);
+            readable.Apply();
+            RenderTexture.active = prev;
+            RenderTexture.ReleaseTemporary(rt);
+            Color32[] srcPixels = readable.GetPixels32();
+            Color32[] dstPixels = new Color32[w * h];
+            for (int y = 0; y < h; y++)
+            {
+                int sy = Math.Min(y, src.height - 1);
+                for (int x = 0; x < w; x++)
+                {
+                    int sx = Math.Min(x, src.width - 1);
+                    dstPixels[y * w + x] = srcPixels[sy * src.width + sx];
+                }
+            }
+            Texture2D texture2D = new Texture2D(w, h, TextureFormat.RGBA32, mipChain: false);
+            texture2D.SetPixels32(dstPixels);
+            texture2D.Apply();
+            UnityEngine.Object.Destroy(readable);
+            UnityEngine.Object.Destroy(src);
+            return texture2D;
+        }
 
-        [HarmonyPatch(typeof(SaveManager), nameof(SaveManager.LoadDLC)), HarmonyPostfix]
+        [HarmonyPatch(typeof(SaveManager), "LoadDLC")]
+        [HarmonyPostfix]
         private static void ReplaceSkeletons()
         {
-            NPCManager npcManager = GameObject.Find("NPCManager").GetComponent<NPCManager>();
-            GameObject[] npcPrefabs = npcManager.npcPrefab;
+            GameObject[] npcPrefabs = GameObject.Find("NPCManager").GetComponent<NPCManager>().npcPrefab;
             for (int i = 0; i < npcPrefabs.Length; i++)
             {
                 GameObject npcPrefab = npcPrefabs[i];
-                if (npcPrefab == null) continue;
+                if (npcPrefab == null)
+                {
+                    continue;
+                }
                 string name = npcPrefab.name.Replace("_prefab", "");
                 string npcPrefabPath = Paths.ConfigPath + "/skeletonReplacers/" + name;
-                if (!Directory.Exists(npcPrefabPath))
-                    continue;
-
-                try
+                if (Directory.Exists(npcPrefabPath))
                 {
-                    SkeletonAnimation prefabAnimation = npcPrefab.GetComponentInChildren<SkeletonAnimation>();
-                    if (cache.ContainsKey(i))
+                    try
                     {
-                        prefabAnimation.skeletonDataAsset = cache[i];
-                        UPEHFBase.Log.LogWarning("Replaced Skeleton for NPC '" + name + "' with npcID [" + i + "] from cache.");
-                        continue;
+                        SkeletonAnimation prefabAnimation = npcPrefab.GetComponentInChildren<SkeletonAnimation>();
+                        byte[] textureData = File.ReadAllBytes(npcPrefabPath + "/" + name + ".png");
+                        TextAsset skeletonDataFile = new TextAsset(File.ReadAllText(npcPrefabPath + "/" + name + ".json"));
+                        TextAsset atlasText = new TextAsset(File.ReadAllText(npcPrefabPath + "/" + name + ".atlas"));
+                        Material mat = UnityEngine.Object.Instantiate(prefabAnimation.GetComponent<MeshRenderer>().materials[0]);
+                        Texture2D texture = new Texture2D(2, 2, TextureFormat.RGBA32, mipChain: false, linear: false);
+                        texture.LoadImage(textureData, markNonReadable: false);
+                        texture = PadToMultipleOf4(texture);
+                        texture.wrapMode = TextureWrapMode.Clamp;
+                        texture.filterMode = FilterMode.Bilinear;
+                        texture.anisoLevel = 1;
+                        texture.Apply(updateMipmaps: true, makeNoLongerReadable: false);
+                        texture.Compress(highQuality: true);
+                        texture.Apply(updateMipmaps: false, makeNoLongerReadable: true);
+                        texture.name = name;
+                        SpineAtlasAsset atlasAsset = SpineAtlasAsset.CreateRuntimeInstance(atlasText, new Texture2D[1] { texture }, mat, initialize: true);
+                        SkeletonDataAsset skeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(skeletonDataFile, atlasAsset, initialize: true);
+                        prefabAnimation.skeletonDataAsset = skeletonDataAsset;
+                        prefabAnimation.Initialize(overwrite: true);
+                        UPEHFBase.Log.LogWarning("Replaced Skeleton for NPC '" + name + "' with npcID [" + i + "]");
                     }
-                    // Load files
-                    byte[] textureData = File.ReadAllBytes(npcPrefabPath + "/" + name + ".png");
-                    TextAsset skeletonDataFile = new TextAsset(File.ReadAllText(npcPrefabPath + "/" + name + ".json"));
-                    TextAsset atlasText = new TextAsset(File.ReadAllText(npcPrefabPath + "/" + name + ".atlas"));
-                    Material mat = UnityEngine.Object.Instantiate<Material>(prefabAnimation.GetComponent<MeshRenderer>().materials[0]);
-
-                    // Load and Setup Atlas Page
-                    Texture2D texture = new Texture2D(2, 2, TextureFormat.RGBA32, false, false);
-                    texture.LoadImage(textureData, false);
-                    texture = WorkshopNPCManager.PadToMultipleOf4_CPU(texture, true);
-                    texture.wrapMode = TextureWrapMode.Clamp;
-                    texture.filterMode = FilterMode.Bilinear;
-                    texture.anisoLevel = 1;
-                    Color[] pixels = texture.GetPixels();
-                    int i1 = new int();
-                    for (i1 = 0; i1 < pixels.Length; i1++)
+                    catch (Exception ex)
                     {
-                        Color premultiplied = new Color(pixels[i1].r * pixels[i1].a, pixels[i1].g * pixels[i1].a, pixels[i1].b * pixels[i1].a, pixels[i1].a);
-                        pixels[i1] = premultiplied;
+                        UPEHFBase.Log.LogError("Failed to replace skeleton for NPC '" + name + "' with npcID [" + i + "]!\r\n" + ex.Message);
                     }
-                    texture.SetPixels(pixels);
-                    texture.Apply(true, false);
-                    texture.Compress(true);
-                    texture.Apply(false, true);
-                    texture.name = name;
-
-                    // Setup Atlas
-                    SpineAtlasAsset atlasAsset = SpineAtlasAsset.CreateRuntimeInstance(atlasText, new Texture2D[] { texture }, mat, true);
-
-                    // Load and setup skeletonData
-                    SkeletonDataAsset skeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(skeletonDataFile, atlasAsset, true, 0.01f);
-                    cache[i] = skeletonDataAsset;
-                    prefabAnimation.skeletonDataAsset = skeletonDataAsset;
-                    prefabAnimation.Initialize(true);
-
-                    // Finished!
-                    UPEHFBase.Log.LogWarning("Replaced Skeleton for NPC '" + name + "' with npcID [" + i + "]");
-                }
-                catch (Exception ex)
-                {
-                    UPEHFBase.Log.LogError("Failed to replace skeleton for NPC '" + name + "' with npcID [" + i + "]!\r\n" + ex.Message);
                 }
             }
         }
