@@ -20,38 +20,7 @@ using UPEHFHook.Patches;
 
 namespace UPEHFHook
 {
-    static class HFrameworkPatch
-    {
-        public static void DoPatch(Harmony harmony)
-        {
-            PerformerLoader.OnLoadPeformers += () =>
-            {
-                string[] array = new string[1]
-                {
-                    "ExDelivery_Performers.xml"
-                };
-                string[] array2 = array;
-                foreach (string text in array2)
-                {
-                    PerformerLoader.AddPerformersFromFile("BepInEx/plugins/UPEdefinitions/" + text);
-                    UPEHFBase.Log.LogInfo("Loading custom performers:" + text);
-                }
-            };
-            ScenesManager.OnRegisterScenes += () =>
-            {
-                string[] array3 = new string[1]
-                {
-                    "ExDelivery_Scenes.xml"
-                };
-                string[] array4 = array3;
-                foreach (string text2 in array4)
-                {
-                    ScenesLoader.LoadScenesFromFile("BepInEx/plugins/UPEdefinitions/" + text2);
-                    UPEHFBase.Log.LogInfo("Loading custom scenes:" + text2);
-                }
-            };
-        }
-    }
+  
     [BepInPlugin(modGUID, modName, modVersion)]
     public class UPEHFBase : BaseUnityPlugin
     {
@@ -62,8 +31,6 @@ namespace UPEHFHook
 
         private readonly Harmony harmony = new Harmony(modGUID);
         internal static ManualLogSource Log;
-        public static int[] AllowedIDs = { 5, 6, 110, 113, 114, 115, 116, 118, 162, 163 };
-        public static List<int> PregableID = new List<int>(AllowedIDs);
 
 
         void Awake()
@@ -77,9 +44,6 @@ namespace UPEHFHook
             harmony.PatchAll(typeof(AssetsLoader));
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(GetPreg));
-            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("HFramework"))
-                HFrameworkPatch.DoPatch(harmony);
-            DeliveryPatches.DoPatch(harmony);
 
             Log.LogInfo("Get pregnant, get pregnant, get pregnant!");
 

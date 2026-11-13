@@ -58,7 +58,7 @@ namespace UPEHFHook.Patches
                 {
                     case 5:
                     case 113:
-                    case 110: //Remember to switch her to birth young giant when she's actually implemented in the game/has conntent
+                    case 110: //Remember to switch her to birth young giant when she's actually implemented in the game/has content
                     case 163:
                         if (gender == 0)
                         {
