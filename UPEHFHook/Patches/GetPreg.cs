@@ -11,7 +11,7 @@ namespace UPEHFHook.Patches
 {
     public class GetPreg
     {
-        public static readonly int[] AllowedIDs = { 5, 6, 73, 110, 113, 114, 115, 116, 118, 162, 163 };
+        public static readonly int[] AllowedIDs = new int[11] { 5, 6, 73, 110, 113, 114, 115, 116, 118, 162, 163 };
 
         [HarmonyPatch(typeof(SexManager), nameof(SexManager.IsPregable)), HarmonyPostfix]
         public static void IsPregablePatch(ref bool __result, int npcID)
