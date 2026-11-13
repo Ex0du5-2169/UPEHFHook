@@ -26,7 +26,7 @@ namespace UPEHFHook
     {
         private const string modGUID = "Ex.MadIslandUPE";
         private const string modName = "Ex Universal Pregnancy Enabler";
-        private const string modVersion = "1.0.0";
+        private const string modVersion = "1.1.0f";
 
 
         private readonly Harmony harmony = new Harmony(modGUID);
