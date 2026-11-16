@@ -22,7 +22,7 @@ namespace UPEHFHook
     {
         private const string modGUID = "Ex.MadIslandUPE";
         private const string modName = "Ex Universal Pregnancy Enabler";
-        private const string modVersion = "1.1.1f";
+        private const string modVersion = "1.1.1";
 
 
         private readonly Harmony harmony = new Harmony(modGUID);
@@ -35,7 +35,7 @@ namespace UPEHFHook
             //UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
 
             Log = this.Logger;
-            Log.LogInfo("Mad Island Universal Pregnancy Enabler 1.1.1 Forked");
+            Log.LogInfo("Mad Island Universal Pregnancy Enabler " + modVersion + " Forked");
 
             harmony.PatchAll(typeof(UPEHFBase));
             harmony.PatchAll(typeof(AssetsLoader));
