@@ -1,10 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-using HFramework;
-using HFramework.Hook;
-using HFramework.Performer;
-using HFramework.Scenes;
 using Spine;
 using Spine.Unity;
 using System;
