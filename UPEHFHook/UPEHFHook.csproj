@@ -94,7 +94,6 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Patches\AssetsLoader.cs" />
-    <Compile Include="Patches\DeliveryPatches.cs" />
     <Compile Include="Patches\GetPreg.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
