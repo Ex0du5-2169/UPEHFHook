@@ -32,7 +32,7 @@ namespace UPEHFHook
         void Awake()
         {
 
-            //UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
+            UPEHFHook.Config.Instance.Init(((BaseUnityPlugin)this).Config);
 
             Log = this.Logger;
             Log.LogInfo("Mad Island Universal Pregnancy Enabler " + modVersion + " Forked");
